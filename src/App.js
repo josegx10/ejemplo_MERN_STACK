@@ -2,6 +2,7 @@ import "./App.css";
 import React, { useState, useEffect } from "react";
 import Search from "./components/search";
 import PeopleList from "./components/PeopleList";
+import Modal from "./components/Modal";
 
 function App() {
   var [people, setPeople] = useState([]);
@@ -9,9 +10,12 @@ function App() {
   var [loading, setLoading] = useState(true);
   var [cont, setCont] = useState(1);
   var [enable, setEnable] = useState(true);
+  var [modalFun, setModal] = useState('add');
+  var [isOpen, setIsOpen] = useState(false);
+
   const signoMayor = ">";
   const signoMenor = "<";
-  const Paginacion = (uri, c) => {
+ const Paginacion = (uri, c) => {
     fetch(uri)
       .then((response) => response.json())
       .then((people) => {
@@ -59,7 +63,9 @@ function App() {
             {" "}
             <h1> Wiki Start Wars </h1>
           </div>
-
+          <div className="button-agregar">
+            <button onClick={() => setIsOpen(true)}> + Agregar registro </button>
+          </div>
           <PeopleList people={people} loading={loading}>
             {" "}
             {setInfo?.count === 0 ? (
@@ -124,6 +130,16 @@ function App() {
           </div>
         </div>
       </div>
+      <div>
+      {isOpen && (
+          <Modal
+            setIsOpen={setIsOpen}
+            modalFun={modalFun}
+            enable={false}
+          />
+        )}
+      </div>
+      
     </>
   );
 }

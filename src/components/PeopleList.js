@@ -1,11 +1,28 @@
 import React, { useState } from "react";
 import Modal from "./Modal";
 import "./PeopleList.css";
-
+import ver from "../assets/ver.png"
+import eliminar from "../assets/eliminar.png"
+import editar from "../assets/editar.png"
 const PeopleList = ({ people, loading }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [item, setItem] = useState([]);
-
+  const [enable, setEnable] = useState(false);
+  const eliminarPeople = (id) => {
+    fetch( `http://localhost:4000/api/people/${id}`, {
+      method: "DELETE",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }
   return (
     <>
       {loading ? (
@@ -31,17 +48,14 @@ const PeopleList = ({ people, loading }) => {
                 <th>Fecha de nacimiento</th>
 
                 <th>Género</th>
+
+                <th> Acciones </th>
               </tr>
             
             {people &&
               people?.map((item) => (
                 <>
-                  <tr
-                    onClick={() => {
-                      setIsOpen(true);
-                      setItem(item);
-                    }}
-                  >
+                  <tr>
                     <td>
                       {item?.name === "none" || item?.name === "unknown"
                         ? "n/a"
@@ -93,6 +107,23 @@ const PeopleList = ({ people, loading }) => {
                         ? "n/a"
                         : item?.gender}
                     </td>
+                    <td>
+                      <img src={ver} className="button-accion" onClick={() => {
+                      setIsOpen(true);
+                      setItem(item);
+                      setEnable(true);
+                    }}/>
+                      <img src={editar} className="button-accion" onClick={() => {
+                      setIsOpen(true);
+                      setItem(item);
+                      setEnable(false)
+
+                    }}/>
+                      <img src={eliminar} className="button-accion" onClick={() => {
+                      setItem(item);
+                      eliminarPeople(item?._id);
+                    }}/>
+                    </td>
                   </tr>
                 </>
               ))}
@@ -109,7 +140,9 @@ const PeopleList = ({ people, loading }) => {
             place={item?.homeworld}
             vehicles={item?.vehicles}
             ships={item?.starships}
-            name={item?.name}
+            item={item}
+            enable={enable}
+            modalFun={'put'}
           />
         )}
       </div>

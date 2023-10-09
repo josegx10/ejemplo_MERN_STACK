@@ -45,11 +45,52 @@
   box-shadow: inset 0px 3px 10px #0000000d, 5px 15px 6px #0000000d;
   border-radius: 10px;
   opacity: 1;
-  margin: 5% 7%;
+  margin: 2% 7%;
   padding: 2%;
   float: left;
 }
 
+.modal-inputs {
+  width: 45%;
+  float: left;
+  padding-left: 5px;
+  padding-right: 5px;
+
+  margin-left: 15px;
+}
+.modal-inputs input {
+  width: 97%;
+  background: var(--filtro-de-numero-de-datos) 0% 0% no-repeat padding-box;
+  background: #f7f8f9 0% 0% no-repeat padding-box;
+  box-shadow: inset 0px 2px 2px #0000000d;
+  border-radius: 12px;
+  opacity: 1;
+  border: 0;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+.button-guardar {
+  text-align: center;
+  margin-top: 90vh;
+  
+  height: 5vh;
+}
+.button-guardar button {
+  background: #4560f2 0% 0% no-repeat padding-box;
+  background: #4560f2 0% 0% no-repeat padding-box;
+  box-shadow: inset 0px 3px 6px #0000001a, 0px 3px 6px #0000001a;
+  border-radius: 15px;
+  opacity: 1;
+  font: normal normal medium 18px/24px Roboto;
+  letter-spacing: 0px;
+  color: #ffffff;
+  font-size: 18px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 15%;
+  padding-right: 15%;
+  border: 0;
+}
 
 .spinnerModal {
   border: 1px solid rgba(0, 0, 0, 0.1);

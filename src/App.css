@@ -97,8 +97,8 @@ h2 {
   /*position: absolute;*/
   bottom: 0;
   width: 100%;
-  margin-top: 15vh;
-  height: 7vh;
+  margin-top: 10vh;
+  height: 5vh;
 }
 .cont {
   float: left;
@@ -131,4 +131,22 @@ h2 {
   font: normal normal normal 18px/24px Roboto;
   color: #ffffff;
 }
+.button-agregar{
+  text-align: right;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
 
+.button-agregar button{
+  background: #E5E9F9 0% 0% no-repeat padding-box;
+background: #E5E9F9 0% 0% no-repeat padding-box;
+border-radius: 35px;
+opacity: 1;
+color: #4560F1;
+border: 0;
+font-size: 18px;
+padding-top: 10px;
+padding-bottom: 10px;
+padding-left: 20px;
+padding-right: 20px;
+}
