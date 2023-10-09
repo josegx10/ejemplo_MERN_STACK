@@ -1,0 +1,14 @@
+.Buscador {
+  width: 97%;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  background: url(https://cdn0.iconfinder.com/data/icons/slim-square-icons-basics/100/basics-19-32.png)
+    0% 15px no-repeat padding-box;
+  box-shadow: inset 0px 3px 10px #0000000d, 5px 15px 6px #0000000d;
+  border-radius: 10px;
+  opacity: 1;
+  margin: 20px 0;
+  border: 0;
+  padding-left: 30px;
+  vertical-align: middle;
+}
