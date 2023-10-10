@@ -3,6 +3,8 @@ import React, { useState, useEffect } from "react";
 import Search from "./components/search";
 import PeopleList from "./components/PeopleList";
 import Modal from "./components/Modal";
+import { url } from "./components/exports";
+import { useCookies } from "react-cookie";
 
 function App() {
   var [people, setPeople] = useState([]);
@@ -12,10 +14,10 @@ function App() {
   var [enable, setEnable] = useState(true);
   var [modalFun, setModal] = useState('add');
   var [isOpen, setIsOpen] = useState(false);
-
+  const [cookies, setCookie] = useCookies(['url', 'cont']);
   const signoMayor = ">";
   const signoMenor = "<";
- const Paginacion = (uri, c) => {
+ const Paginacion = (uri, c, conts) => {
     fetch(uri)
       .then((response) => response.json())
       .then((people) => {
@@ -23,15 +25,21 @@ function App() {
         setPeople(people?.results);
         setInfo(people);
         setLoading(false);
+        
         if (c === 1) {
           setCont(cont + 1);
         } else if (c === 2) {
           setCont(cont - 1);
         } else {
-          setCont(1);
+          if(conts >= 0){
+            setCont(people.nPage);
+          }
         }
+        setCookie('cont', cont);
         setEnable(true);
       });
+    setCookie('url', uri);
+    
   };
 
   const handleNextPage = () => {
@@ -46,7 +54,13 @@ function App() {
     setEnable(false);
   };
   useEffect(() => {
-    Paginacion(`http://localhost:4000/api/people`);
+    if(cookies.url){
+      Paginacion(cookies.url, 0, Number(cookies.cont));
+      
+    }else {
+      Paginacion(`http://localhost:4000/api/people`);
+    }
+    
   }, []);
 
   return (
@@ -64,9 +78,9 @@ function App() {
             <h1> Wiki Start Wars </h1>
           </div>
           <div className="button-agregar">
-            <button onClick={() => setIsOpen(true)}> + Agregar registro </button>
+            <button onClick={() => setIsOpen(true)} > + Agregar registro </button>
           </div>
-          <PeopleList people={people} loading={loading}>
+          <PeopleList people={people} loading={loading} >
             {" "}
             {setInfo?.count === 0 ? (
               <h2> Sin resultados </h2>

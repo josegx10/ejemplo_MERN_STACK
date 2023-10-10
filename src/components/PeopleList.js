@@ -1,27 +1,22 @@
 import React, { useState } from "react";
 import Modal from "./Modal";
+
+
 import "./PeopleList.css";
 import ver from "../assets/ver.png"
 import eliminar from "../assets/eliminar.png"
 import editar from "../assets/editar.png"
+import Sitio from "./Sitio";
 const PeopleList = ({ people, loading }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [item, setItem] = useState([]);
   const [enable, setEnable] = useState(false);
+  const [idPeople, setId] = useState('')
+  var [loading2, setLoading] = useState(false);
   const eliminarPeople = (id) => {
-    fetch( `http://localhost:4000/api/people/${id}`, {
-      method: "DELETE",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-    })
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+    setId(id);
+    setLoading(true);
+    
   }
   return (
     <>
@@ -146,6 +141,7 @@ const PeopleList = ({ people, loading }) => {
           />
         )}
       </div>
+      {loading2 && (<Sitio info={'delete'} error={false} id={idPeople}/>)}
     </>
   );
 };

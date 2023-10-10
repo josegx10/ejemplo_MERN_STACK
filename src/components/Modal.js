@@ -12,7 +12,7 @@ const Modal = ({
   ships,
   item,
   modalFun,
-  enable
+  enable,
 }) => {
   var resultsFilms = [];
   var resultsPlace = [];
@@ -31,6 +31,10 @@ const Modal = ({
   var [birth_year, setBirth] = useState("");
   var [height, setHeight] = useState("");
   var [skin_color, setSkin] = useState("");
+  var [mensaje, setMensaje] = useState('');
+  var [error, setError] = useState(false)
+  var [loading, setLoading] = useState(false);
+  
   useEffect(() => {
     setName(item?.name);
     setGender(item?.gender);
@@ -67,10 +71,15 @@ const Modal = ({
     })
       .then((res) => {
         console.log(res);
+        setMensaje('post');
+        setError(false);
       })
       .catch((err) => {
         console.error(err);
+        setMensaje('post');
+        setError(true);
       });
+      setMensaje('post')
     }else if(modalFun === 'put'){
       fetch( `http://localhost:4000/api/people/${item?._id}`, {
       method: "PUT",
@@ -96,12 +105,18 @@ const Modal = ({
     })
       .then((res) => {
         console.log(res);
+        setMensaje('put');
+        setError(false);
       })
       .catch((err) => {
         console.error(err);
+        setMensaje('put');
+        setError(true);
       });
+      setMensaje('put');
     }
     
+    setLoading(true);
   };
   const selectPlanet = (e) => {
     place = [];
@@ -186,7 +201,7 @@ const Modal = ({
   } else {
   
     registerPlace.push({ value: place, label: place });
-    if (films.length === 0) {
+    if (films?.length === 0) {
       resultsFilms.push(<> n/a </>);
     } else {
       films.forEach((employee) => {
@@ -195,7 +210,7 @@ const Modal = ({
       });
     }
 
-    if (vehicles.length === 0) {
+    if (vehicles?.length === 0) {
       resultsVehicles.push(<> n/a </>);
     } else {
       vehicles.forEach((employee) => {
@@ -204,7 +219,7 @@ const Modal = ({
       });
     }
 
-    if (ships.length === 0) {
+    if (ships?.length === 0) {
       resultsShips.push(<> n/a </>);
     } else {
       ships.forEach((employee) => {
@@ -315,6 +330,7 @@ const Modal = ({
           
         </div>
       </article>
+      {loading && (<Sitio error={error} info={mensaje}/>)}  
     </>
   );
 };
