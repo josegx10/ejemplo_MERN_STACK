@@ -36,9 +36,10 @@
   }
 }
 .Contenido {
-  margin: 20px;
-  width: 96%;
-  
+  margin-left: 20px;
+  width: 90%;
+  float: left;
+  height: 100vh;
 }
 .cajon{
   padding: 10px;

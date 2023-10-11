@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import "./Modal.css";
 import Sitio from "./Sitio";
 import Select from "react-select";
+import { TextField } from "@mui/material";
 
 
 const Modal = ({
@@ -31,10 +32,10 @@ const Modal = ({
   var [birth_year, setBirth] = useState("");
   var [height, setHeight] = useState("");
   var [skin_color, setSkin] = useState("");
-  var [mensaje, setMensaje] = useState('');
-  var [error, setError] = useState(false)
+  var [mensaje, setMensaje] = useState("");
+  var [error, setError] = useState(false);
   var [loading, setLoading] = useState(false);
-  
+
   useEffect(() => {
     setName(item?.name);
     setGender(item?.gender);
@@ -46,76 +47,89 @@ const Modal = ({
     setSkin(item?.skin_color);
   }, []);
   const addPeople = () => {
-    if(modalFun === 'add'){
-      fetch("http://localhost:4000/api/people", {
-      method: "POST",
-      body: JSON.stringify({
-        name: name,
-        height: height,
-        mass: mass,
-        hair_color: hair_color,
-        skin_color: skin_color,
-        eye_color: eye_color,
-        birth_year: birth_year,
-        gender: gender,
-        homeworld: homeworld,
-        films: films,
-        species: [],
-        vehicles: vehicles,
-        starships: ships,
-      }),
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-    })
-      .then((res) => {
-        console.log(res);
-        setMensaje('post');
-        setError(false);
+    if (modalFun === "add") {
+      if (
+        name !== "" &&
+        mass !== "" &&
+        gender !== "" &&
+        eye_color !== "" &&
+        hair_color !== "" &&
+        birth_year !== "" &&
+        height !== "" &&
+        skin_color !== ""
+      ) {
+        fetch("http://localhost:4000/api/people", {
+          method: "POST",
+          body: JSON.stringify({
+            name: name,
+            height: height,
+            mass: mass,
+            hair_color: hair_color,
+            skin_color: skin_color,
+            eye_color: eye_color,
+            birth_year: birth_year,
+            gender: gender,
+            homeworld: homeworld,
+            films: films,
+            species: [],
+            vehicles: vehicles,
+            starships: ships,
+          }),
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+        })
+          .then((res) => {
+            console.log(res);
+            setMensaje("post");
+            setError(false);
+          })
+          .catch((err) => {
+            console.error(err);
+            setMensaje("post");
+            setError(true);
+          });
+        setMensaje("post");
+      } else {
+        alert('No funciona');
+      }
+    } else if (modalFun === "put") {
+      fetch(`http://localhost:4000/api/people/${item?._id}`, {
+        method: "PUT",
+        body: JSON.stringify({
+          name: name,
+          height: height,
+          mass: mass,
+          hair_color: hair_color,
+          skin_color: skin_color,
+          eye_color: eye_color,
+          birth_year: birth_year,
+          gender: gender,
+          homeworld: homeworld,
+          films: films,
+          species: [],
+          vehicles: vehicles,
+          starships: ships,
+        }),
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
       })
-      .catch((err) => {
-        console.error(err);
-        setMensaje('post');
-        setError(true);
-      });
-      setMensaje('post')
-    }else if(modalFun === 'put'){
-      fetch( `http://localhost:4000/api/people/${item?._id}`, {
-      method: "PUT",
-      body: JSON.stringify({
-        name: name,
-        height: height,
-        mass: mass,
-        hair_color: hair_color,
-        skin_color: skin_color,
-        eye_color: eye_color,
-        birth_year: birth_year,
-        gender: gender,
-        homeworld: homeworld,
-        films: films,
-        species: [],
-        vehicles: vehicles,
-        starships: ships,
-      }),
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-    })
-      .then((res) => {
-        console.log(res);
-        setMensaje('put');
-        setError(false);
-      })
-      .catch((err) => {
-        console.error(err);
-        setMensaje('put');
-        setError(true);
-      });
-      setMensaje('put');
+        .then((res) => {
+          console.log(res);
+          setMensaje("put");
+          setError(false);
+        })
+        .catch((err) => {
+          console.error(err);
+          setMensaje("put");
+          setError(true);
+        });
+      setMensaje("put");
     }
-    
+
     setLoading(true);
   };
   const selectPlanet = (e) => {
@@ -169,43 +183,40 @@ const Modal = ({
     setSkin(e.target.value);
   };
   fetch("http://localhost:4000/api/planet")
-      .then((response) => response.json())
-      .then((people) => {
-        people.forEach((element) => {
-          resultsPlace.push({ value: element.name, label: element.name });
-        });
+    .then((response) => response.json())
+    .then((people) => {
+      people.forEach((element) => {
+        resultsPlace.push({ value: element.name, label: element.name });
       });
-    fetch("http://localhost:4000/api/starship")
-      .then((response) => response.json())
-      .then((people) => {
-        people.forEach((element) => {
-          resultsShips.push({ value: element.name, label: element.name });
-        });
+    });
+  fetch("http://localhost:4000/api/starship")
+    .then((response) => response.json())
+    .then((people) => {
+      people.forEach((element) => {
+        resultsShips.push({ value: element.name, label: element.name });
       });
-    fetch("http://localhost:4000/api/film")
-      .then((response) => response.json())
-      .then((people) => {
-        people.forEach((element) => {
-          resultsFilms.push({ value: element.title, label: element.title });
-        });
+    });
+  fetch("http://localhost:4000/api/film")
+    .then((response) => response.json())
+    .then((people) => {
+      people.forEach((element) => {
+        resultsFilms.push({ value: element.title, label: element.title });
       });
-    fetch("http://localhost:4000/api/vehicle")
-      .then((response) => response.json())
-      .then((people) => {
-        people.forEach((element) => {
-          resultsVehicles.push({ value: element.name, label: element.name });
-        });
+    });
+  fetch("http://localhost:4000/api/vehicle")
+    .then((response) => response.json())
+    .then((people) => {
+      people.forEach((element) => {
+        resultsVehicles.push({ value: element.name, label: element.name });
       });
+    });
   if (modalFun === "add") {
-    
   } else {
-  
     registerPlace.push({ value: place, label: place });
     if (films?.length === 0) {
       resultsFilms.push(<> n/a </>);
     } else {
       films.forEach((employee) => {
-      
         registerFilms.push({ value: employee, label: employee });
       });
     }
@@ -214,7 +225,6 @@ const Modal = ({
       resultsVehicles.push(<> n/a </>);
     } else {
       vehicles.forEach((employee) => {
-        
         registerVehicle.push({ value: employee, label: employee });
       });
     }
@@ -223,7 +233,6 @@ const Modal = ({
       resultsShips.push(<> n/a </>);
     } else {
       ships.forEach((employee) => {
-        
         registerShips.push({ value: employee, label: employee });
       });
     }
@@ -241,26 +250,62 @@ const Modal = ({
             <div className="modal-info">
               <div className="modal-inputs">
                 Nombre <br />
-                <input value={name} onChange={nameChange} disabled={enable}/>
+                <input value={name} onChange={nameChange} disabled={enable} required />
                 <br />
                 Color de ojos <br />
-                <input value={eye_color} onChange={eyeChange} disabled={enable}/>
+                <input
+                  value={eye_color}
+                  onChange={eyeChange}
+                  disabled={enable}
+                  required
+                />
                 <br />
                 Color de cabello <br />
-                <input value={hair_color} onChange={hairChange} disabled={enable}/> <br />
+                <input
+                  value={hair_color}
+                  onChange={hairChange}
+                  disabled={enable}
+                  required
+                />{" "}
+                <br />
                 Masa <br />
-                <input value={mass} onChange={massChange} disabled={enable}/>
+                <input value={mass} onChange={massChange} disabled={enable} />
                 <br />
               </div>
               <div className="modal-inputs">
                 Fecha de nacimiento <br />
-                <input value={birth_year} onChange={birthChange} disabled={enable}/> <br />
+                <input
+                  value={birth_year}
+                  onChange={birthChange}
+                  disabled={enable}
+                  required
+                />{" "}
+                <br />
                 Genero <br />
-                <input value={gender} onChange={genderChange} disabled={enable}/> <br />
+                <input
+                  value={gender}
+                  onChange={genderChange}
+                  disabled={enable}
+                  required
+                />{" "}
+                <br />
                 Altura <br />
-                <input value={height} onChange={heightChange} disabled={enable}/> <br />
+                <input
+                  value={height}
+                  onChange={heightChange}
+                  disabled={enable}
+                  required
+                />{" "}
+                <br />
                 Color de piel <br />
-                <input value={skin_color} onChange={skinChange} disabled={enable}/> <br />
+                <input
+                  value={skin_color}
+                  onChange={skinChange}
+                  disabled={enable}
+                  required
+                  
+                />{" "}
+                <br />
               </div>
             </div>
           </div>
@@ -324,13 +369,16 @@ const Modal = ({
               ></Select>
             </div>
           </div>
-          {enable ? ('') :  <div className="button-guardar" onClick={addPeople.bind(this)}>
-            <button >Guardar</button>
-          </div>}
-          
+          {enable ? (
+            ""
+          ) : (
+            <div className="button-guardar" onClick={addPeople.bind(this)}>
+              <button>Guardar</button>
+            </div>
+          )}
         </div>
       </article>
-      {loading && (<Sitio error={error} info={mensaje}/>)}  
+      {loading && <Sitio error={error} info={mensaje} />}
     </>
   );
 };
