@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import "../PeopleList.css";
 import ver from "../../assets/ver.png";
-import editar from "../../assets/editar.png";
-import eliminar from "../../assets/eliminar.png";
 import AddPlanet from "./addPlanet";
 const PlanetList = ({}) => {
   const [loading, setLoading] = useState(false);
@@ -12,7 +10,7 @@ const PlanetList = ({}) => {
   const [enable, setEnable] = useState(false);
 
   useEffect(() => {
-    fetch("http://localhost:4000/api/planet")
+    fetch("http://192.168.1.162:4000/api/planet")
       .then((response) => response.json())
       .then((planet) => {
         setPlanet(planet);

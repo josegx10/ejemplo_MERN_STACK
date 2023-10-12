@@ -42,7 +42,7 @@ const AddPlanet = ({ item, enable, setIsOpen }) => {
     setSurface_water(e.target.value);
   };
   const postPlanet = () => {
-    fetch("http://localhost:4000/api/planet", {
+    fetch("http://192.168.1.162:4000/api/planet", {
       method: "POST",
       body: JSON.stringify({
         name: name,

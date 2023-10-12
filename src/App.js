@@ -61,7 +61,7 @@ function App() {
     if (cookies.url) {
       Paginacion(cookies.url);
     } else {
-      Paginacion(`http://localhost:4000/api/people`);
+      Paginacion(`http://192.168.1.162:4000/api/people`);
     }
   }, []);
 

@@ -23,7 +23,7 @@ const Modal = ({
   var registerPlace = [];
   var registerVehicle = [];
   var registerShips = [];
-  var homeworld = "";
+ 
   var [name, setName] = useState("");
   var [gender, setGender] = useState("");
   var [eye_color, setEye] = useState("");
@@ -32,6 +32,7 @@ const Modal = ({
   var [birth_year, setBirth] = useState("");
   var [height, setHeight] = useState("");
   var [skin_color, setSkin] = useState("");
+  var [homeworld, setHomeworld] = useState("")
   var [mensaje, setMensaje] = useState("");
   var [error, setError] = useState(false);
   var [loading, setLoading] = useState(false);
@@ -45,6 +46,7 @@ const Modal = ({
     setBirth(item?.birth_year);
     setHeight(item?.height);
     setSkin(item?.skin_color);
+    setHomeworld(item?.homeworld);
   }, []);
   const addPeople = () => {
     if (modalFun === "add") {
@@ -58,7 +60,7 @@ const Modal = ({
         height !== "" &&
         skin_color !== ""
       ) {
-        fetch("http://localhost:4000/api/people", {
+        fetch("http://192.168.1.162:4000/api/people", {
           method: "POST",
           body: JSON.stringify({
             name: name,
@@ -95,7 +97,7 @@ const Modal = ({
         alert('No funciona');
       }
     } else if (modalFun === "put") {
-      fetch(`http://localhost:4000/api/people/${item?._id}`, {
+      fetch(`http://192.168.1.162:4000/api/people/${item?._id}`, {
         method: "PUT",
         body: JSON.stringify({
           name: name,
@@ -136,7 +138,7 @@ const Modal = ({
     place = [];
     e.forEach((element) => {
       place.push(element.value);
-      homeworld = element.value;
+      setHomeworld(element.value);
     });
   };
   const selectStarship = (e) => {
@@ -182,28 +184,28 @@ const Modal = ({
   const skinChange = (e) => {
     setSkin(e.target.value);
   };
-  fetch("http://localhost:4000/api/planet")
+  fetch("http://192.168.1.162:4000/api/planet")
     .then((response) => response.json())
     .then((people) => {
       people.forEach((element) => {
         resultsPlace.push({ value: element.name, label: element.name });
       });
     });
-  fetch("http://localhost:4000/api/starship")
+  fetch("http://192.168.1.162:4000/api/starship")
     .then((response) => response.json())
     .then((people) => {
       people.forEach((element) => {
         resultsShips.push({ value: element.name, label: element.name });
       });
     });
-  fetch("http://localhost:4000/api/film")
+  fetch("http://192.168.1.162:4000/api/film")
     .then((response) => response.json())
     .then((people) => {
       people.forEach((element) => {
         resultsFilms.push({ value: element.title, label: element.title });
       });
     });
-  fetch("http://localhost:4000/api/vehicle")
+  fetch("http://192.168.1.162:4000/api/vehicle")
     .then((response) => response.json())
     .then((people) => {
       people.forEach((element) => {

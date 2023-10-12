@@ -18,7 +18,7 @@ const AddFilm = ({ item, enable, setIsOpen }) => {
     setProducer(e.target.value);
   };
   const postFilm = () => {
-    fetch("http://localhost:4000/api/film", {
+    fetch("http://192.168.1.162:4000/api/film", {
       method: "POST",
       body: JSON.stringify({
         title: title,

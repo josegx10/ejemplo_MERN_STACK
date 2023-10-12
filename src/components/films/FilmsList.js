@@ -9,7 +9,7 @@ const FilmsList = ({}) => {
   const [item, setItem] = useState([]);
   const [enable, setEnable] = useState(false);
   useEffect(() => {
-    fetch("http://localhost:4000/api/film")
+    fetch("http://192.168.1.162:4000/api/film")
       .then((response) => response.json())
       .then((film) => {
         setFilms(film);

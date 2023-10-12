@@ -38,7 +38,7 @@ const AddVehicle = ({ item, enable, setIsOpen }) => {
     setConsumables(e.target.value);
   };
   const postVehicle = () => {
-    fetch("http://localhost:4000/api/vehicle", {
+    fetch("http://192.168.1.162:4000/api/vehicle", {
       method: "POST",
       body: JSON.stringify({
         name: name,

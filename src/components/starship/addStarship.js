@@ -46,7 +46,7 @@ const AddStarship = ({ item, enable, setIsOpen }) => {
     setConsumables(e.target.value);
   };
   const postStarship = () => {
-    fetch("http://localhost:4000/api/starship", {
+    fetch("http://192.168.1.162:4000/api/starship", {
       method: "POST",
       body: JSON.stringify({
         name: name,
