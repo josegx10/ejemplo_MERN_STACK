@@ -3,9 +3,13 @@ import "../PeopleList.css";
 import ver from "../../assets/ver.png";
 import editar from "../../assets/editar.png";
 import eliminar from "../../assets/eliminar.png";
+import AddPlanet from "./addPlanet";
 const PlanetList = ({}) => {
   const [loading, setLoading] = useState(false);
   const [planet, setPlanet] = useState([]);
+  const [isOpen, setIsOpen] = useState(false);
+  const [item, setItem] = useState([]);
+  const [enable, setEnable] = useState(false);
 
   useEffect(() => {
     fetch("http://localhost:4000/api/planet")
@@ -88,16 +92,28 @@ const PlanetList = ({}) => {
                 </td>
 
                 <td>
-                  <img src={ver} className="button-accion" onClick={() => {}} />
+                  <img src={ver} className="button-accion" onClick={() => {
+                    setIsOpen(true);
+                    setItem(item);
+                    setEnable(true);
+                  }} />
                   
                 </td>
               </tr>
             ))}
           </tbody>
-        </table>
+        </table>  
       ) : (
         <div className="spinner"> </div>
       )}
+      {isOpen && (
+          <AddPlanet
+            setIsOpen={setIsOpen}
+            item={item}
+            enable={enable}
+            
+          />  
+        )}
     </>
   );
 };

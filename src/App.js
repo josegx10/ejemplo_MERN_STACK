@@ -11,6 +11,9 @@ import PlanetList from "./components/homeworld/PlanetList";
 import StarshipList from "./components/starship/StarshipList";
 import VehicleList from "./components/vehicle/VehicleList";
 import AddFilm from "./components/films/addFilm";
+import AddPlanet from "./components/homeworld/addPlanet";
+import AddVehicle from "./components/vehicle/AddVehicle";
+import AddStarship from "./components/starship/addStarship";
 
 function App() {
   var [people, setPeople] = useState([]);
@@ -21,7 +24,7 @@ function App() {
   var [modalFun, setModal] = useState("add");
   var [isOpen, setIsOpen] = useState(false);
   var [sitio, setSitio] = useState("");
-  const [cookies, setCookie] = useCookies(["url", "cont"]);
+  const [cookies, setCookie] = useCookies(["url", "cont", "table"]);
   const signoMayor = ">";
   const signoMenor = "<";
   const Paginacion = (uri) => {
@@ -50,7 +53,11 @@ function App() {
     setEnable(false);
   };
   useEffect(() => {
-    setSitio("people");
+    if(cookies.table) {
+      setSitio(cookies.table)
+    }else {
+      setSitio("people");
+    }
     if (cookies.url) {
       Paginacion(cookies.url);
     } else {
@@ -60,7 +67,7 @@ function App() {
 
   return (
     <>
-      <Barra setSitio={setSitio} />
+      <Barra setSitio={setSitio} setCookie={setCookie}/>
       <div className="Contenido">
         <Search
           setPeople={setPeople}
@@ -157,6 +164,9 @@ function App() {
         {isOpen && sitio === "films" && (
           <AddFilm enable={false} setIsOpen={setIsOpen}/>
         )}
+        {isOpen && sitio === "planet" && (<AddPlanet enable={false} setIsOpen={setIsOpen}/>)}
+        {isOpen && sitio === "vehicle" && (<AddVehicle enable={false} setIsOpen={setIsOpen}/>)}
+        {isOpen && sitio === "starship" && (<AddStarship enable={false} setIsOpen={setIsOpen}/>)}
       </div>
     </>
   );

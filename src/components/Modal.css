@@ -67,6 +67,24 @@
   padding-top: 5px;
   padding-bottom: 5px;
 }
+.modal-inputs-extras {
+  width: 90%;
+  
+  padding-left: 5px;
+  padding-right: 5px;
+  margin-left: 15px;
+}
+.modal-inputs-extras input {
+  width: 97%;
+  background: #f7f8f9 0% 0% no-repeat padding-box;
+  box-shadow: inset 0px 2px 2px #0000000d;
+  border-radius: 12px;
+  opacity: 1;
+  border: 0;
+  padding-top: 10px;
+  padding-bottom: 10px;
+
+}
 .button-guardar {
   text-align: center;
   margin-top: 90vh;

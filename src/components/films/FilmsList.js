@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import "../PeopleList.css";
 import ver from "../../assets/ver.png";
-import editar from "../../assets/editar.png";
-import eliminar from "../../assets/eliminar.png";
+import AddFilm from "./addFilm";
 const FilmsList = ({}) => {
   const [loading, setLoading] = useState(false);
   const [films, setFilms] = useState([]);
-
+  const [isOpen, setIsOpen] = useState(false);
+  const [item, setItem] = useState([]);
+  const [enable, setEnable] = useState(false);
   useEffect(() => {
     fetch("http://localhost:4000/api/film")
       .then((response) => response.json())
@@ -49,7 +50,9 @@ const FilmsList = ({}) => {
                 </td>
 
                 <td>
-                  <img src={ver} className="button-accion" onClick={() => {}} />
+                  <img src={ver} className="button-accion" onClick={() => {setIsOpen(true);
+                      setItem(item);
+                      setEnable(true);}} />
                   
                 </td>
               </tr>
@@ -59,6 +62,14 @@ const FilmsList = ({}) => {
       ) : (
         <div className="spinner"> </div>
       )}
+      {isOpen && (
+          <AddFilm
+            setIsOpen={setIsOpen}
+            item={item}
+            enable={enable}
+            
+          />  
+        )}
     </>
   );
 };

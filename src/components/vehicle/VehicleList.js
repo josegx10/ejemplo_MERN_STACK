@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import "../PeopleList.css";
 import ver from "../../assets/ver.png";
-import editar from "../../assets/editar.png";
-import eliminar from "../../assets/eliminar.png";
+import AddVehicle from "./AddVehicle";
 const VehicleList = ({}) => {
   const [loading, setLoading] = useState(false);
   const [vehicles, setVehicles] = useState([]);
+  const [isOpen, setIsOpen] = useState(false);
+  const [item, setItem] = useState([]);
+  const [enable, setEnable] = useState(false);
 
   useEffect(() => {
     fetch("http://localhost:4000/api/vehicle")
@@ -29,7 +31,7 @@ const VehicleList = ({}) => {
               <th> Número de pasajeros </th>
               <th> Velocidad atmosférica </th>
               <th> Capacidad </th>
-              <th> Tiemplo de Combustible </th>
+              <th> Tiempo de combustible </th>
               <th> Acciones </th>
             </tr>
             {vehicles.map((item, index) => (
@@ -81,7 +83,11 @@ const VehicleList = ({}) => {
                     : item?.consumables}
                 </td>
                 <td>
-                  <img src={ver} className="button-accion" onClick={() => {}} />
+                  <img src={ver} className="button-accion" onClick={() => {
+                    setIsOpen(true);
+                    setItem(item);
+                    setEnable(true);
+                  }} />
                   
                 </td>
               </tr>
@@ -91,6 +97,14 @@ const VehicleList = ({}) => {
       ) : (
         <div className="spinner"> </div>
       )}
+      {isOpen && (
+          <AddVehicle
+            setIsOpen={setIsOpen}
+            item={item}
+            enable={enable}
+            
+          />  
+        )}
     </>
   );
 };
