@@ -24,53 +24,94 @@ const Modal = ({
   var registerVehicle = [];
   var registerShips = [];
  
-  var [name, setName] = useState("");
-  var [gender, setGender] = useState("");
-  var [eye_color, setEye] = useState("");
-  var [hair_color, setHair] = useState("");
-  var [mass, setMass] = useState("");
-  var [birth_year, setBirth] = useState("");
-  var [height, setHeight] = useState("");
-  var [skin_color, setSkin] = useState("");
-  var [homeworld, setHomeworld] = useState("")
-  var [mensaje, setMensaje] = useState("");
+  var [name, setName] = useState({
+    value: "",
+    error: true,
+    color: "1px red solid"
+  });
+  var [gender, setGender] = useState({
+    value: "",
+    error: true,
+    color: "1px red solid"
+  });
+  var [eye_color, setEye] = useState({
+    value: "",
+    error: true,
+    color: "1px red solid"
+  });
+  var [hair_color, setHair] = useState({
+    value: "",
+    error: true,
+    color: "1px red solid"
+  });
+  var [mass, setMass] = useState({
+    value: "",
+    error: true,
+    color: "1px red solid"
+  });
+  var [birth_year, setBirth] = useState({
+    value: "",
+    error: true,
+    color: "1px red solid"
+  });
+  var [height, setHeight] = useState({
+    value: "",
+    error: true,
+    color: "1px red solid"
+  });
+  var [skin_color, setSkin] = useState({
+    value: "",
+    error: true,
+    color: "1px red solid"
+  });
+  var [homeworld, setHomeworld] = useState({
+    value: "",
+    error: true,
+    color: "1px red solid"
+  })
+  var [mensaje, setMensaje] = useState({
+    value: "",
+    error: true,
+    color: "1px red solid"
+  });
   var [error, setError] = useState(false);
   var [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    setName(item?.name);
-    setGender(item?.gender);
-    setEye(item?.eye_color);
-    setHair(item?.hair_color);
-    setMass(item?.mass);
-    setBirth(item?.birth_year);
-    setHeight(item?.height);
-    setSkin(item?.skin_color);
+    if(item?.name) {
+    setName({value: item?.name, error: false, color: "1px solid green"});
+    setGender({value: item?.gender, error: false, color: "1px solid green"});
+    setEye({value: item?.eye_color, error: false, color: "1px solid green"});
+    setHair({value: item?.hair_color, error: false, color: "1px solid green"});
+    setMass({value: item?.mass, error: false, color: "1px solid green"});
+    setBirth({value: item?.birth_year, error: false, color: "1px solid green"});
+    setHeight({value: item?.height, error: false, color: "1px solid green"});
+    setSkin({value: item?.skin_color, error: false, color: "1px solid green"});
+    
+    }
     setHomeworld(item?.homeworld);
   }, []);
   const addPeople = () => {
     if (modalFun === "add") {
+      console.log(name.value, name.error)
       if (
-        name !== "" &&
-        mass !== "" &&
-        gender !== "" &&
-        eye_color !== "" &&
-        hair_color !== "" &&
-        birth_year !== "" &&
-        height !== "" &&
-        skin_color !== ""
+        name.error || gender.error || hair_color.error || eye_color.error || mass.error || birth_year.error || height.error || skin_color.error
+        
       ) {
+        setLoading(true);
+        setMensaje('InputError');
+      }else {
         fetch("http://192.168.1.162:4000/api/people", {
           method: "POST",
           body: JSON.stringify({
-            name: name,
-            height: height,
-            mass: mass,
-            hair_color: hair_color,
-            skin_color: skin_color,
-            eye_color: eye_color,
-            birth_year: birth_year,
-            gender: gender,
+            name: name.value,
+          height: height.value,
+          mass: mass.value,
+          hair_color: hair_color.value,
+          skin_color: skin_color.value,
+          eye_color: eye_color.value,
+          birth_year: birth_year.value,
+          gender: gender.value,
             homeworld: homeworld,
             films: films,
             species: [],
@@ -93,21 +134,20 @@ const Modal = ({
             setError(true);
           });
         setMensaje("post");
-      } else {
-        alert('No funciona');
-      }
+        setLoading(true);
+      } 
     } else if (modalFun === "put") {
       fetch(`http://192.168.1.162:4000/api/people/${item?._id}`, {
         method: "PUT",
         body: JSON.stringify({
-          name: name,
-          height: height,
-          mass: mass,
-          hair_color: hair_color,
-          skin_color: skin_color,
-          eye_color: eye_color,
-          birth_year: birth_year,
-          gender: gender,
+          name: name.value,
+          height: height.value,
+          mass: mass.value,
+          hair_color: hair_color.value,
+          skin_color: skin_color.value,
+          eye_color: eye_color.value,
+          birth_year: birth_year.value,
+          gender: gender.value,
           homeworld: homeworld,
           films: films,
           species: [],
@@ -130,9 +170,10 @@ const Modal = ({
           setError(true);
         });
       setMensaje("put");
+      setLoading(true);
     }
 
-    setLoading(true);
+    
   };
   const selectPlanet = (e) => {
     place = [];
@@ -161,28 +202,52 @@ const Modal = ({
   };
 
   const nameChange = (e) => {
-    setName(e.target.value);
+    if(e.target.value === ''){
+      setName({value: e.target.value, error: true, color: '1px solid red'});
+    }else 
+    {setName({value: e.target.value, error: false, color: '1px solid green'});}
   };
   const genderChange = (e) => {
-    setGender(e.target.value);
+    if(e.target.value === ''){
+      setGender({value: e.target.value, error: true, color: '1px solid red'});
+    }else 
+    {setGender({value: e.target.value, error: false, color: '1px solid green'});}
   };
   const eyeChange = (e) => {
-    setEye(e.target.value);
+    if(e.target.value === ''){
+      setEye({value: e.target.value, error: true, color: '1px solid red'});
+    }else 
+    {setEye({value: e.target.value, error: false, color: '1px solid green'});}
   };
   const hairChange = (e) => {
-    setHair(e.target.value);
+    if(e.target.value === ''){
+      setHair({value: e.target.value, error: true, color: '1px solid red'});
+    }else 
+    {setHair({value: e.target.value, error: false, color: '1px solid green'});}
   };
   const massChange = (e) => {
-    setMass(e.target.value);
+    if(e.target.value === ''){
+      setMass({value: e.target.value, error: true, color: '1px solid red'});
+    }else 
+    {setMass({value: e.target.value, error: false, color: '1px solid green'});}
   };
   const birthChange = (e) => {
-    setBirth(e.target.value);
+    if(e.target.value === ''){
+      setBirth({value: e.target.value, error: true, color: '1px solid red'});
+    }else 
+    {setBirth({value: e.target.value, error: false, color: '1px solid green'});}
   };
   const heightChange = (e) => {
-    setHeight(e.target.value);
+    if(e.target.value === ''){
+      setHeight({value: e.target.value, error: true, color: '1px solid red'});
+    }else 
+    {setHeight({value: e.target.value, error: false, color: '1px solid green'});}
   };
   const skinChange = (e) => {
-    setSkin(e.target.value);
+    if(e.target.value === ''){
+      setSkin({value: e.target.value, error: true, color: '1px solid red'});
+    }else 
+    {setSkin({value: e.target.value, error: false, color: '1px solid green'});}
   };
   fetch("http://192.168.1.162:4000/api/planet")
     .then((response) => response.json())
@@ -252,59 +317,65 @@ const Modal = ({
             <div className="modal-info">
               <div className="modal-inputs">
                 Nombre <br />
-                <input value={name} onChange={nameChange} disabled={enable} required />
+                <input value={name.value} onChange={nameChange} disabled={enable} required style={{border: name.color}}/>
                 <br />
                 Color de ojos <br />
                 <input
-                  value={eye_color}
+                  value={eye_color.value}
                   onChange={eyeChange}
                   disabled={enable}
                   required
+                  style={{border: eye_color.color}}
                 />
                 <br />
                 Color de cabello <br />
                 <input
-                  value={hair_color}
+                  value={hair_color.value}
                   onChange={hairChange}
                   disabled={enable}
                   required
+                  style={{border: hair_color.color}}
                 />{" "}
                 <br />
                 Masa <br />
-                <input value={mass} onChange={massChange} disabled={enable} />
+                <input value={mass.value} onChange={massChange} disabled={enable} style={{border: mass.color}}/>
                 <br />
               </div>
               <div className="modal-inputs">
                 Fecha de nacimiento <br />
                 <input
-                  value={birth_year}
+                  value={birth_year.value}
                   onChange={birthChange}
                   disabled={enable}
                   required
+                  style={{border: birth_year.color}}
                 />{" "}
                 <br />
                 Genero <br />
                 <input
-                  value={gender}
+                  value={gender.value}
                   onChange={genderChange}
                   disabled={enable}
                   required
+                  style={{border: gender.color}}
                 />{" "}
                 <br />
                 Altura <br />
                 <input
-                  value={height}
+                  value={height.value}
                   onChange={heightChange}
                   disabled={enable}
                   required
+                  style={{border: height.color}}
                 />{" "}
                 <br />
                 Color de piel <br />
                 <input
-                  value={skin_color}
+                  value={skin_color.value}
                   onChange={skinChange}
                   disabled={enable}
                   required
+                  style={{border: skin_color.color}}
                   
                 />{" "}
                 <br />
@@ -380,7 +451,7 @@ const Modal = ({
           )}
         </div>
       </article>
-      {loading && <Sitio error={error} info={mensaje} />}
+      {loading && <Sitio error={error} info={mensaje} setLoading={setLoading}/>}
     </>
   );
 };

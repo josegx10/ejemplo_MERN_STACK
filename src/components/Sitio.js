@@ -3,12 +3,15 @@ import "./Sitio.css";
 
 import exito from "../assets/exito.png";
 import errorImg from "../assets/error.png";
-const Sitio = ({ info, error, id }) => {
+const Sitio = ({ info, error, id, setLoading }) => {
   var data = [];
   const [cargarMensaje, setCargar] = useState(false);
   const reinicio = () => {
     window.location.reload();
   };
+  const volver = () => {
+    setLoading(false);
+  }
   const eliminar = () => {
     fetch(`http://localhost:4000/api/people/${id}`, {
       method: "DELETE",
@@ -137,6 +140,18 @@ const Sitio = ({ info, error, id }) => {
               <h4 className="message-texto">
                 {" "}
                 Nave espacial registada con exito{" "}
+              </h4>{" "}
+            </>
+          )}
+          {info === "InputError" && (
+            <>
+              <button onClick={volver} className="message-button">
+                x
+              </button>{" "}
+              <img src={errorImg} className="message-img"></img>{" "}
+              <h4 className="message-texto">
+                {" "}
+                Te falto rellanar un campo obligatorio{" "}
               </h4>{" "}
             </>
           )}
