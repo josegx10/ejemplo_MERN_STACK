@@ -45,6 +45,7 @@ const AddVehicle = ({ item, enable, setIsOpen }) => {
     color: "1px red solid",
   });
   var [loading, setLoading] = useState(false);
+  var [mensaje, setMensaje] = useState("");
   const nameChange = (e) => {
     if (e.target.value === "") {
       setName({ value: e.target.value, error: true, color: "1px solid red" });
@@ -135,7 +136,8 @@ const AddVehicle = ({ item, enable, setIsOpen }) => {
   };
   const postVehicle = () => {
     if(name.error || model.error || vehicle_class.error || length.error || passengers.error || max_atmosphering_speed.error || cargo_capacity.error || consumables.error){
-      alert('Llenar datos')
+      setMensaje("InputError");
+      setLoading(true);
     }else{
       fetch("http://192.168.1.162:4000/api/vehicle", {
       method: "POST",
@@ -156,6 +158,7 @@ const AddVehicle = ({ item, enable, setIsOpen }) => {
     }).then((res) => {
       console.log(res);
       setLoading(true);
+      setMensaje("vehicle");
     })
     .catch((err) => {
       console.error(err);
@@ -245,7 +248,7 @@ const AddVehicle = ({ item, enable, setIsOpen }) => {
         )}
       </div>
     </article><> </>
-    {loading && <Sitio error={false} info={"vehicle"} />}
+    {loading && <Sitio error={false} info={mensaje} setLoading={setLoading}/>}
     
     </>
   );

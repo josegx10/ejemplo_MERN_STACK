@@ -24,6 +24,9 @@
   width: 40%;
   padding: 10px;
   margin: 0px 0px 0 0;
+  font-size: 24px;
+  color: #6454C8;
+  font: normal normal bold 24px/32px Roboto;
 }
 .button-modal {
   float: right;
@@ -56,6 +59,7 @@
   padding-left: 5px;
   padding-right: 5px;
   margin-left: 15px;
+  
 }
 .modal-inputs input{
   width: 97%;
@@ -64,8 +68,9 @@
   border-radius: 12px;
   opacity: 1;
   border: 0;
-  padding-top: 5px;
-  padding-bottom: 5px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
 }
 .modal-inputs-extras {
   width: 90%;

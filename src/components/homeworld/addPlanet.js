@@ -4,56 +4,205 @@ import Sitio from "../Sitio";
 
 const AddPlanet = ({ item, enable, setIsOpen }) => {
   
-  var [name, setName] = useState("");
-  var [diameter, setDiameter] = useState("");
-  var [rotation_period, setRotation_period] = useState("");
-  var [orbital_period, setOrbital_period] = useState("");
-  var [gravity, setGravity] = useState("");
-  var [population, setPopulation] = useState("");
-  var [climate, setClimate] = useState("");
-  var [terrain, setTerrain] = useState("");
-  var [surface_water, setSurface_water] = useState("");
+  var [name, setName] = useState({
+    value: "",
+    error: true,
+    color: "1px red solid",
+  });
+  var [diameter, setDiameter] = useState({
+    value: "",
+    error: true,
+    color: "1px red solid",
+  });
+  var [rotation_period, setRotation_period] = useState({
+    value: "",
+    error: true,
+    color: "1px red solid",
+  });
+  var [orbital_period, setOrbital_period] = useState({
+    value: "",
+    error: true,
+    color: "1px red solid",
+  });
+  var [gravity, setGravity] = useState({
+    value: "",
+    error: true,
+    color: "1px red solid",
+  });
+  var [population, setPopulation] = useState({
+    value: "",
+    error: true,
+    color: "1px red solid",
+  });
+  var [climate, setClimate] = useState({
+    value: "",
+    error: true,
+    color: "1px red solid",
+  });
+  var [terrain, setTerrain] = useState({
+    value: "",
+    error: true,
+    color: "1px red solid",
+  });
+  var [surface_water, setSurface_water] = useState({
+    value: "",
+    error: true,
+    color: "1px red solid",
+  });
   var [loading, setLoading] = useState(false);
+  var [mensaje, setMensaje] = useState("");
   const nameChange = (e) => {
-    setName(e.target.value);
+    if (e.target.value === "") {
+      setName({
+        value: e.target.value,
+        error: true,
+        color: "1px solid red",
+      });
+    } else {
+      setName({
+        value: e.target.value,
+        error: false,
+        color: "1px solid green",
+      });
+    }
   };
   const diameterChange = (e) => {
-    setDiameter(e.target.value);
+    if (e.target.value === "") {
+      setDiameter({
+        value: e.target.value,
+        error: true,
+        color: "1px solid red",
+      });
+    } else {
+      setDiameter({
+        value: e.target.value,
+        error: false,
+        color: "1px solid green",
+      });
+    }
   };
   const rotation_periodChange = (e) => {
-    setRotation_period(e.target.value);
+    if (e.target.value === "") {
+      setRotation_period({
+        value: e.target.value,
+        error: true,
+        color: "1px solid red",
+      });
+    } else {
+      setRotation_period({
+        value: e.target.value,
+        error: false,
+        color: "1px solid green",
+      });
+    }
   };
   const orbital_periodChange = (e) => {
-    setOrbital_period(e.target.value);
+    if (e.target.value === "") {
+      setOrbital_period({
+        value: e.target.value,
+        error: true,
+        color: "1px solid red",
+      });
+    } else {
+      setOrbital_period({
+        value: e.target.value,
+        error: false,
+        color: "1px solid green",
+      });
+    }
   };
   const gravityChange = (e) => {
-    setGravity(e.target.value);
+    if (e.target.value === "") {
+      setGravity({
+        value: e.target.value,
+        error: true,
+        color: "1px solid red",
+      });
+    } else {
+      setGravity({
+        value: e.target.value,
+        error: false,
+        color: "1px solid green",
+      });
+    }
   };
   const populationChange = (e) => {
-    setPopulation(e.target.value);
+    if (e.target.value === "") {
+      setPopulation({
+        value: e.target.value,
+        error: true,
+        color: "1px solid red",
+      });
+    } else {
+      setPopulation({
+        value: e.target.value,
+        error: false,
+        color: "1px solid green",
+      });
+    }
   };
   const climateChange = (e) => {
-    setClimate(e.target.value);
+    if (e.target.value === "") {
+      setClimate({
+        value: e.target.value,
+        error: true,
+        color: "1px solid red",
+      });
+    } else {
+      setClimate({
+        value: e.target.value,
+        error: false,
+        color: "1px solid green",
+      });
+    }
   };
   const terrainChange = (e) => {
-    setTerrain(e.target.value);
+    if (e.target.value === "") {
+      setTerrain({
+        value: e.target.value,
+        error: true,
+        color: "1px solid red",
+      });
+    } else {
+      setTerrain({
+        value: e.target.value,
+        error: false,
+        color: "1px solid green",
+      });
+    }
   };
   const surface_waterChange = (e) => {
-    setSurface_water(e.target.value);
+    if (e.target.value === "") {
+      setSurface_water({
+        value: e.target.value,
+        error: true,
+        color: "1px solid red",
+      });
+    } else {
+      setSurface_water({
+        value: e.target.value,
+        error: false,
+        color: "1px solid green",
+      });
+    }
   };
   const postPlanet = () => {
+    if(name.error || diameter.error || rotation_period.error || orbital_period.error || gravity.error || population.error || climate.error || climate.error || terrain.error || surface_water.error){
+      setLoading(true);
+      setMensaje("InputError");
+    }else {
     fetch("http://192.168.1.162:4000/api/planet", {
       method: "POST",
       body: JSON.stringify({
-        name: name,
-        diameter: diameter,
-        rotation_period: rotation_period,
-        orbital_period: orbital_period,
-        gravity: gravity,
-        population: population,
-        climate: climate,
-        terrain: terrain,
-        surface_water: surface_water,
+        name: name.value,
+        diameter: diameter.value,
+        rotation_period: rotation_period.value,
+        orbital_period: orbital_period.value,
+        gravity: gravity.value,
+        population: population.value,
+        climate: climate.value,
+        terrain: terrain.value,
+        surface_water: surface_water.value,
       }),
       headers: {
         Accept: "application/json",
@@ -62,23 +211,26 @@ const AddPlanet = ({ item, enable, setIsOpen }) => {
     }).then((res) => {
       console.log(res);
       setLoading(true);
+      setMensaje("planet")
     })
     .catch((err) => {
       console.error(err);
-    });;
+    });;}
   };
 
   useEffect(() => {
+    if(item?.name){
+      setName({ value: item?.name, error: false, color: "1px solid green" });
+    setDiameter({ value: item?.diameter, error: false, color: "1px solid green" });
+    setRotation_period({ value: item?.rotation_period, error: false, color: "1px solid green" });
+    setOrbital_period({ value: item?.orbital_period, error: false, color: "1px solid green" });
+    setGravity({ value: item?.gravity, error: false, color: "1px solid green" });
+    setPopulation({ value: item?.population, error: false, color: "1px solid green" });
+    setClimate({ value: item?.climate, error: false, color: "1px solid green" });
+    setTerrain({ value: item?.terrain, error: false, color: "1px solid green" });
+    setSurface_water({ value: item?.surface_water, error: false, color: "1px solid green" });
+    }
     
-    setName(item?.name);
-    setDiameter(item?.diameter);
-    setRotation_period(item?.rotation_period);
-    setOrbital_period(item?.orbital_period);
-    setGravity(item?.gravity);
-    setPopulation(item?.population);
-    setClimate(item?.climate);
-    setTerrain(item?.terrain);
-    setSurface_water(item?.surface_water);
   }, []);
   return (
     <><article className="modal is-open">
@@ -90,53 +242,59 @@ const AddPlanet = ({ item, enable, setIsOpen }) => {
         <div className="modal-cuadro">
           <div className="modal-inputs-extras">
             Nombre <br />
-            <input value={name} onChange={nameChange} disabled={enable} required />
+            <input value={name.value} onChange={nameChange} disabled={enable} required style={{border: name.color}}/>
             <br />
             Diámetro <br />
             <input
-              value={diameter}
+              value={diameter.value}
               onChange={diameterChange}
               disabled={enable}
-              required />
+              required
+              style={{border: diameter.color}} />
             <br />
             Periodo de rotación <br />
             <input
-              value={rotation_period}
+              value={rotation_period.value}
               onChange={rotation_periodChange}
               disabled={enable}
-              required />{" "}
+              required
+              style={{border: rotation_period.color}} />{" "}
             Periodo orbital <br />
-            <input value={orbital_period} onChange={orbital_periodChange} disabled={enable} required />
+            <input value={orbital_period.value} onChange={orbital_periodChange} disabled={enable} required style={{border: orbital_period.color}}/>
             <br />
             Gravedad <br />
             <input
-              value={gravity}
+              value={gravity.value}
               onChange={gravityChange}
               disabled={enable}
-              required />
+              required
+              style={{border: gravity.color}} />
             <br />
             Población <br />
             <input
-              value={population}
+              value={population.value}
               onChange={populationChange}
               disabled={enable}
-              required />{" "}
+              required 
+              style={{border: population.color}}/>{" "}
              Clima <br />
-            <input value={climate} onChange={climateChange} disabled={enable} required />
+            <input value={climate.value} onChange={climateChange} disabled={enable} required style={{border: climate.color}}/>
             <br />
             Terreno <br />
             <input
-              value={terrain}
+              value={terrain.value}
               onChange={terrainChange}
               disabled={enable}
-              required />
+              required
+              style={{border: terrain.color}} />
             <br />
             % de superficie de agua <br />
             <input
-              value={surface_water}
+              value={surface_water.value}
               onChange={surface_waterChange}
               disabled={enable}
-              required />{" "}
+              required
+              style={{border: surface_water.color}} />{" "}
 
           </div>
         </div>
@@ -149,7 +307,7 @@ const AddPlanet = ({ item, enable, setIsOpen }) => {
         )}
       </div>
     </article><> </>
-    {loading && <Sitio error={false} info={"planet"} />}
+    {loading && <Sitio error={false} info={mensaje} setLoading={setLoading}/>}
     
     </>
   );

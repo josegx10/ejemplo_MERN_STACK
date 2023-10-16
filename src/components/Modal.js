@@ -68,11 +68,7 @@ const Modal = ({
     error: true,
     color: "1px red solid",
   });
-  var [mensaje, setMensaje] = useState({
-    value: "",
-    error: true,
-    color: "1px red solid",
-  });
+  var [mensaje, setMensaje] = useState("");
   var [error, setError] = useState(false);
   var [loading, setLoading] = useState(false);
 

@@ -139,7 +139,7 @@ const Sitio = ({ info, error, id, setLoading }) => {
               <img src={exito} className="message-img"></img>{" "}
               <h4 className="message-texto">
                 {" "}
-                Nave espacial registada con exito{" "}
+                Nave espacial registrada con exito{" "}
               </h4>{" "}
             </>
           )}
@@ -151,7 +151,7 @@ const Sitio = ({ info, error, id, setLoading }) => {
               <img src={errorImg} className="message-img"></img>{" "}
               <h4 className="message-texto">
                 {" "}
-                Te falto rellanar un campo obligatorio{" "}
+                Te falto rellanar uno o más campo obligatorio{" "}
               </h4>{" "}
             </>
           )}

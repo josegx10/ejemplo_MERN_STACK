@@ -4,26 +4,79 @@ import Sitio from "../Sitio";
 
 const AddFilm = ({ item, enable, setIsOpen }) => {
   
-  var [title, setTitle] = useState("");
-  var [director, setDirector] = useState("");
-  var [producer, setProducer] = useState("");
+  var [title, setTitle] = useState({
+    value: "",
+    error: true,
+    color: "1px red solid",
+  });
+  var [director, setDirector] = useState({
+    value: "",
+    error: true,
+    color: "1px red solid",
+  });
+  var [producer, setProducer] = useState({
+    value: "",
+    error: true,
+    color: "1px red solid",
+  });
   var [loading, setLoading] = useState(false);
+  var [mensaje, setMensaje] = useState("");
   const titleChange = (e) => {
-    setTitle(e.target.value);
+    if (e.target.value === "") {
+      setTitle({
+        value: e.target.value,
+        error: true,
+        color: "1px solid red",
+      });
+    } else {
+      setTitle({
+        value: e.target.value,
+        error: false,
+        color: "1px solid green",
+      });
+    }
   };
   const directorChange = (e) => {
-    setDirector(e.target.value);
+    if (e.target.value === "") {
+      setDirector({
+        value: e.target.value,
+        error: true,
+        color: "1px solid red",
+      });
+    } else {
+      setDirector({
+        value: e.target.value,
+        error: false,
+        color: "1px solid green",
+      });
+    }
   };
   const producerChange = (e) => {
-    setProducer(e.target.value);
+    if (e.target.value === "") {
+      setProducer({
+        value: e.target.value,
+        error: true,
+        color: "1px solid red",
+      });
+    } else {
+      setProducer({
+        value: e.target.value,
+        error: false,
+        color: "1px solid green",
+      });
+    }
   };
   const postFilm = () => {
+    if(title.error || director.error || producer.error){
+      setLoading(true);
+      setMensaje("InputError");
+    }else {
     fetch("http://192.168.1.162:4000/api/film", {
       method: "POST",
       body: JSON.stringify({
-        title: title,
-        director: director,
-        producer: producer,
+        title: title.value,
+        director: director.value,
+        producer: producer.value,
       }),
       headers: {
         Accept: "application/json",
@@ -32,17 +85,20 @@ const AddFilm = ({ item, enable, setIsOpen }) => {
     }).then((res) => {
       console.log(res);
       setLoading(true);
+      setMensaje("film")
     })
     .catch((err) => {
       console.error(err);
-    });;
+    });;}
   };
 
   useEffect(() => {
+    if(item?.title){
+      setTitle({ value: item?.title, error: false, color: "1px solid green" });
+    setDirector({ value: item?.director, error: false, color: "1px solid green" });
+    setProducer({ value: item?.producer, error: false, color: "1px solid green" });
+    }
     
-    setTitle(item?.title);
-    setDirector(item?.director);
-    setProducer(item?.producer);
   }, []);
   return (
     <><article className="modal is-open">
@@ -54,21 +110,23 @@ const AddFilm = ({ item, enable, setIsOpen }) => {
         <div className="modal-cuadro">
           <div className="modal-inputs-extras">
             Titulo <br />
-            <input value={title} onChange={titleChange} disabled={enable} required />
+            <input value={title.value} onChange={titleChange} disabled={enable} required style={{border: title.color}}/>
             <br />
             Director <br />
             <input
-              value={director}
+              value={director.value}
               onChange={directorChange}
               disabled={enable}
-              required />
+              required
+              style={{border: director.color}} />
             <br />
             Productor <br />
             <input
-              value={producer}
+              value={producer.value}
               onChange={producerChange}
               disabled={enable}
-              required />{" "}
+              required
+              style={{border: producer.color}} />{" "}
 
           </div>
         </div>
@@ -81,7 +139,7 @@ const AddFilm = ({ item, enable, setIsOpen }) => {
         )}
       </div>
     </article><> </>
-    {loading && <Sitio error={false} info={"film"} />}
+    {loading && <Sitio error={false} info={mensaje} setLoading={setLoading}/>}
     
     </>
   );
