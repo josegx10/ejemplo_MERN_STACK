@@ -49,6 +49,9 @@ const AddPlanet = ({ item, enable, setIsOpen }) => {
     error: true,
     color: "1px red solid",
   });
+  var [invalid, setInvalidad] = useState({
+    name: false,
+  })
   var [loading, setLoading] = useState(false);
   var [mensaje, setMensaje] = useState("");
   const nameChange = (e) => {
@@ -64,6 +67,7 @@ const AddPlanet = ({ item, enable, setIsOpen }) => {
         error: false,
         color: "1px solid green",
       });
+      setInvalidad({name: name.error})
     }
   };
   const diameterChange = (e) => {
@@ -187,9 +191,8 @@ const AddPlanet = ({ item, enable, setIsOpen }) => {
     }
   };
   const postPlanet = () => {
-    if(name.error || diameter.error || rotation_period.error || orbital_period.error || gravity.error || population.error || climate.error || climate.error || terrain.error || surface_water.error){
-      setLoading(true);
-      setMensaje("InputError");
+    if(name.error ){
+      setInvalidad({name: name.error});
     }else {
     fetch("http://192.168.1.162:4000/api/planet", {
       method: "POST",
@@ -242,59 +245,54 @@ const AddPlanet = ({ item, enable, setIsOpen }) => {
         <div className="modal-cuadro">
           <div className="modal-inputs-extras">
             Nombre <br />
-            <input value={name.value} onChange={nameChange} disabled={enable} required style={{border: name.color}}/>
+            <input value={name.value} onChange={nameChange} disabled={enable} required style={{border: invalid.name && name.color}}/>
+            {invalid.name && (<div className="DataError"> campo obligatorio </div>)}
             <br />
             Diámetro <br />
             <input
               value={diameter.value}
               onChange={diameterChange}
               disabled={enable}
-              required
-              style={{border: diameter.color}} />
+              required />
             <br />
             Periodo de rotación <br />
             <input
               value={rotation_period.value}
               onChange={rotation_periodChange}
               disabled={enable}
-              required
-              style={{border: rotation_period.color}} />{" "}
+              required />{" "}
             Periodo orbital <br />
-            <input value={orbital_period.value} onChange={orbital_periodChange} disabled={enable} required style={{border: orbital_period.color}}/>
+            <input value={orbital_period.value} onChange={orbital_periodChange} disabled={enable} required />
             <br />
             Gravedad <br />
             <input
               value={gravity.value}
               onChange={gravityChange}
               disabled={enable}
-              required
-              style={{border: gravity.color}} />
+              required />
             <br />
             Población <br />
             <input
               value={population.value}
               onChange={populationChange}
               disabled={enable}
-              required 
-              style={{border: population.color}}/>{" "}
+              required />{" "}
              Clima <br />
-            <input value={climate.value} onChange={climateChange} disabled={enable} required style={{border: climate.color}}/>
+            <input value={climate.value} onChange={climateChange} disabled={enable} required />
             <br />
             Terreno <br />
             <input
               value={terrain.value}
               onChange={terrainChange}
               disabled={enable}
-              required
-              style={{border: terrain.color}} />
+              required />
             <br />
             % de superficie de agua <br />
             <input
               value={surface_water.value}
               onChange={surface_waterChange}
               disabled={enable}
-              required
-              style={{border: surface_water.color}} />{" "}
+              required />{" "}
 
           </div>
         </div>

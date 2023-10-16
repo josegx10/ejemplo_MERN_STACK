@@ -53,6 +53,10 @@ const AddStarship = ({ item, enable, setIsOpen }) => {
     error: true,
     color: "1px red solid",
   });
+  var [invalid, setInvalidad] = useState({
+    name: false,
+    model: false
+  })
   var [loading, setLoading] = useState(false);
   var [mensaje, setMensaje] = useState("");
   const nameChange = (e) => {
@@ -64,6 +68,7 @@ const AddStarship = ({ item, enable, setIsOpen }) => {
         error: false,
         color: "1px solid green",
       });
+      setInvalidad({name: name.error, model: invalid.model});
     }
   };
   const modelChange = (e) => {
@@ -75,6 +80,7 @@ const AddStarship = ({ item, enable, setIsOpen }) => {
         error: false,
         color: "1px solid green",
       });
+      setInvalidad({name: invalid.name, model: model.error});
     }
   };
   const starship_classChange = (e) => {
@@ -192,18 +198,9 @@ const AddStarship = ({ item, enable, setIsOpen }) => {
   const postStarship = () => {
     if (
       name.error ||
-      model.error ||
-      starship_class.error ||
-      length.error ||
-      passengers.error ||
-      max_atmosphering_speed.error ||
-      hyperdrive_rating.error ||
-      MGLT.error ||
-      cargo_capacity.error ||
-      consumables.error
+      model.error
     ) {
-      setMensaje("InputError");
-      setLoading(true);
+      setInvalidad({name: name.error, model: model.error});
     } else {
       fetch("http://192.168.1.162:4000/api/starship", {
         method: "POST",
@@ -293,8 +290,9 @@ const AddStarship = ({ item, enable, setIsOpen }) => {
                 onChange={nameChange}
                 disabled={enable}
                 required
-                style={{ border: name.color }}
+                style={{ border: invalid.name && name.color }}
               />
+              {invalid.name && (<div className="DataError"> campo obligatorio </div>)}
               <br />
               Modelo <br />
               <input
@@ -302,8 +300,9 @@ const AddStarship = ({ item, enable, setIsOpen }) => {
                 onChange={modelChange}
                 disabled={enable}
                 required
-                style={{ border: model.color }}
+                style={{ border: invalid.model && model.color }}
               />
+              {invalid.model && (<div className="DataError"> campo obligatorio </div>)}
               <br />
               Clase <br />
               <input
@@ -311,7 +310,7 @@ const AddStarship = ({ item, enable, setIsOpen }) => {
                 onChange={starship_classChange}
                 disabled={enable}
                 required
-                style={{ border: starship_class.color }}
+                
               />{" "}
               Tamaño <br />
               <input
@@ -319,7 +318,7 @@ const AddStarship = ({ item, enable, setIsOpen }) => {
                 onChange={lengthChange}
                 disabled={enable}
                 required
-                style={{ border: length.color }}
+                
               />
               <br />
               Número de pasajeros <br />
@@ -328,7 +327,7 @@ const AddStarship = ({ item, enable, setIsOpen }) => {
                 onChange={passengersChange}
                 disabled={enable}
                 required
-                style={{ border: passengers.color }}
+                
               />
               <br />
               Velocidad atmosférica <br />
@@ -337,7 +336,7 @@ const AddStarship = ({ item, enable, setIsOpen }) => {
                 onChange={max_atmosphering_speedChange}
                 disabled={enable}
                 required
-                style={{ border: max_atmosphering_speed.color }}
+                
               />{" "}
               Hiperimpulsor <br />
               <input
@@ -345,7 +344,7 @@ const AddStarship = ({ item, enable, setIsOpen }) => {
                 onChange={hyperdrive_ratingChange}
                 disabled={enable}
                 required
-                style={{ border: hyperdrive_rating.color }}
+                
               />
               <br />
               MGLT <br />
@@ -354,7 +353,7 @@ const AddStarship = ({ item, enable, setIsOpen }) => {
                 onChange={MGLTChange}
                 disabled={enable}
                 required
-                style={{ border: MGLT.color }}
+                
               />
               <br />
               Capacidad <br />
@@ -363,7 +362,7 @@ const AddStarship = ({ item, enable, setIsOpen }) => {
                 onChange={cargo_capacityChange}
                 disabled={enable}
                 required
-                style={{ border: cargo_capacity.color }}
+                
               />{" "}
               Tiempo de combustible
               <br />
@@ -372,7 +371,7 @@ const AddStarship = ({ item, enable, setIsOpen }) => {
                 onChange={consumablesChange}
                 disabled={enable}
                 required
-                style={{ border: consumables.color }}
+                
               />
               <br />
             </div>

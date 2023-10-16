@@ -19,6 +19,11 @@ const AddFilm = ({ item, enable, setIsOpen }) => {
     error: true,
     color: "1px red solid",
   });
+  var [invalid, setInvalidad] = useState({
+    title: false,
+    director: false,
+    producer: false
+  })
   var [loading, setLoading] = useState(false);
   var [mensaje, setMensaje] = useState("");
   const titleChange = (e) => {
@@ -34,6 +39,7 @@ const AddFilm = ({ item, enable, setIsOpen }) => {
         error: false,
         color: "1px solid green",
       });
+      setInvalidad({title: title.error, director: invalid.director, producer: invalid.producer})
     }
   };
   const directorChange = (e) => {
@@ -49,6 +55,7 @@ const AddFilm = ({ item, enable, setIsOpen }) => {
         error: false,
         color: "1px solid green",
       });
+      setInvalidad({title: invalid.title, director: director.error, producer: invalid.producer})
     }
   };
   const producerChange = (e) => {
@@ -64,12 +71,12 @@ const AddFilm = ({ item, enable, setIsOpen }) => {
         error: false,
         color: "1px solid green",
       });
+      setInvalidad({title: invalid.title, director: invalid.director, producer: producer.error})
     }
   };
   const postFilm = () => {
     if(title.error || director.error || producer.error){
-      setLoading(true);
-      setMensaje("InputError");
+      setInvalidad({title: title.error, director: director.error, producer: producer.error})
     }else {
     fetch("http://192.168.1.162:4000/api/film", {
       method: "POST",
@@ -110,7 +117,8 @@ const AddFilm = ({ item, enable, setIsOpen }) => {
         <div className="modal-cuadro">
           <div className="modal-inputs-extras">
             Titulo <br />
-            <input value={title.value} onChange={titleChange} disabled={enable} required style={{border: title.color}}/>
+            <input value={title.value} onChange={titleChange} disabled={enable} required style={{border: invalid.title && title.color}}/>
+            {invalid.title && (<div className="DataError"> campo obligatorio </div>)}
             <br />
             Director <br />
             <input
@@ -118,7 +126,8 @@ const AddFilm = ({ item, enable, setIsOpen }) => {
               onChange={directorChange}
               disabled={enable}
               required
-              style={{border: director.color}} />
+              style={{border: invalid.director && director.color}} />
+            {invalid.director && (<div className="DataError"> campo obligatorio </div>)}
             <br />
             Productor <br />
             <input
@@ -126,8 +135,8 @@ const AddFilm = ({ item, enable, setIsOpen }) => {
               onChange={producerChange}
               disabled={enable}
               required
-              style={{border: producer.color}} />{" "}
-
+              style={{border: invalid.producer && producer.color}} />{" "}
+            {invalid.producer && (<div className="DataError"> campo obligatorio </div>)}
           </div>
         </div>
         {enable ? (

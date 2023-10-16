@@ -70,7 +70,7 @@
   border: 0;
   padding-top: 10px;
   padding-bottom: 10px;
-  margin-bottom: 10px;
+  
 }
 .modal-inputs-extras {
   width: 90%;
@@ -131,4 +131,11 @@
   100% {
     transform: rotate(360deg);
   }
+  
+}
+
+.DataError{
+    height: 10px;
+    color: red;
+    font-size: 10px;
 }

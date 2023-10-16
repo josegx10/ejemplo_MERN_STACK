@@ -22,7 +22,10 @@ const Modal = ({
   var registerPlace = [];
   var registerVehicle = [];
   var registerShips = [];
-
+  var [invalid, setInvalidad] = useState({
+    name: false,
+    birth_year: false,
+  })
   var [name, setName] = useState({
     value: "",
     error: true,
@@ -114,16 +117,10 @@ const Modal = ({
       console.log(name.value, name.error);
       if (
         name.error ||
-        gender.error ||
-        hair_color.error ||
-        eye_color.error ||
-        mass.error ||
-        birth_year.error ||
-        height.error ||
-        skin_color.error
+        birth_year.error
+        
       ) {
-        setLoading(true);
-        setMensaje("InputError");
+        setInvalidad({name: name.error, birth_year: birth_year.error})
       } else {
         fetch("http://192.168.1.162:4000/api/people", {
           method: "POST",
@@ -232,6 +229,7 @@ const Modal = ({
         error: false,
         color: "1px solid green",
       });
+      setInvalidad({name: name.error, birth_year: invalid.birth_year});
     }
   };
   const genderChange = (e) => {
@@ -283,6 +281,7 @@ const Modal = ({
         error: false,
         color: "1px solid green",
       });
+      setInvalidad({name: invalid.name, birth_year: birth_year.error});
     }
   };
   const heightChange = (e) => {
@@ -380,8 +379,9 @@ const Modal = ({
                   onChange={nameChange}
                   disabled={enable}
                   required
-                  style={{ border: name.color }}
+                  style={ {border: invalid.name && name.color }}
                 />
+                {invalid.name && (<div className="DataError"> campo obligatorio </div>)}
                 <br />
                 Color de ojos <br />
                 <input
@@ -389,7 +389,7 @@ const Modal = ({
                   onChange={eyeChange}
                   disabled={enable}
                   required
-                  style={{ border: eye_color.color }}
+                  
                 />
                 <br />
                 Color de cabello <br />
@@ -398,7 +398,7 @@ const Modal = ({
                   onChange={hairChange}
                   disabled={enable}
                   required
-                  style={{ border: hair_color.color }}
+                  
                 />{" "}
                 <br />
                 Masa <br />
@@ -406,7 +406,7 @@ const Modal = ({
                   value={mass.value}
                   onChange={massChange}
                   disabled={enable}
-                  style={{ border: mass.color }}
+                 
                 />
                 <br />
               </div>
@@ -417,8 +417,9 @@ const Modal = ({
                   onChange={birthChange}
                   disabled={enable}
                   required
-                  style={{ border: birth_year.color }}
+                  style={{ border: invalid.birth_year && birth_year.color }}
                 />{" "}
+                {invalid.birth_year && (<div className="DataError"> campo obligatorio </div>)}
                 <br />
                 Genero <br />
                 <input
@@ -426,7 +427,7 @@ const Modal = ({
                   onChange={genderChange}
                   disabled={enable}
                   required
-                  style={{ border: gender.color }}
+                  
                 />{" "}
                 <br />
                 Altura <br />
@@ -435,7 +436,7 @@ const Modal = ({
                   onChange={heightChange}
                   disabled={enable}
                   required
-                  style={{ border: height.color }}
+                  
                 />{" "}
                 <br />
                 Color de piel <br />
@@ -444,7 +445,7 @@ const Modal = ({
                   onChange={skinChange}
                   disabled={enable}
                   required
-                  style={{ border: skin_color.color }}
+                  
                 />{" "}
                 <br />
               </div>
