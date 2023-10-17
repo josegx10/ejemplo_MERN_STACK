@@ -50,9 +50,21 @@
   opacity: 1;
   margin: 2% 7%;
   padding: 2%;
-  float: left;
+  min-height: 30vh;
 }
-
+.modal-select {
+  top: 221px;
+  left: 90px;
+  width: 80%;
+  /* UI Properties */
+  background: #ffffff 0% 0% no-repeat padding-box;
+  box-shadow: inset 0px 3px 10px #0000000d, 5px 15px 6px #0000000d;
+  border-radius: 10px;
+  opacity: 1;
+  margin: 2% 7%;
+  padding: 2%;
+  min-height: 5vh;
+}
 .modal-inputs {
   width: 42%;
   float: left;
@@ -92,9 +104,9 @@
 }
 .button-guardar {
   text-align: center;
-  margin-top: 90vh;
+  margin-top: 10vh;
   
-  height: 5vh;
+  
 }
 .button-guardar button {
   background: #4560f2 0% 0% no-repeat padding-box;
