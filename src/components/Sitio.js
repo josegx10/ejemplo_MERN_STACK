@@ -11,9 +11,9 @@ const Sitio = ({ info, error, id, setLoading }) => {
   };
   const volver = () => {
     setLoading(false);
-  }
+  };
   const eliminar = () => {
-    fetch(`http://localhost:4000/api/people/${id}`, {
+    fetch(`http://192.168.1.162:4000/api/people/${id}`, {
       method: "DELETE",
       headers: {
         Accept: "application/json",
@@ -37,10 +37,12 @@ const Sitio = ({ info, error, id, setLoading }) => {
         <div className="message-panel">
           {cargarMensaje === false && info === "delete" && (
             <>
-              <button onClick={reinicio} className="message-button">
-                x
-              </button>
-              <br />{" "}
+              <div className="divisor">
+                <button onClick={reinicio} className="message-button">
+                  x
+                </button>
+              </div>
+              
               <div className="message-texto">
                 {" "}
                 ¿Estas seguro que deseas eliminar este registro?{" "}
@@ -54,40 +56,48 @@ const Sitio = ({ info, error, id, setLoading }) => {
             </>
           )}
           {cargarMensaje && info === "delete" && (
-            <>
-              <button onClick={reinicio} className="message-button">
-                x
-              </button>{" "}
+            <div>
+              <div className="divisor">
+                <button onClick={reinicio} className="message-button">
+                  x
+                </button>
+              </div>
               <img src={exito} className="message-img"></img>{" "}
               <h4 className="message-texto">
                 {" "}
                 Tu registro se eliminó con exito{" "}
               </h4>{" "}
-            </>
+            </div>
           )}
           {info === "post" && error === false && (
             <>
-              <button onClick={reinicio} className="message-button">
-                x
-              </button>{" "}
+              <div className="divisor">
+                <button onClick={reinicio} className="message-button">
+                  x
+                </button>
+              </div>
               <img src={exito} className="message-img"></img>{" "}
               <h4 className="message-texto"> Registro guardado con exito </h4>{" "}
             </>
           )}
           {info === "post" && error === true && (
             <>
-              <button onClick={reinicio} className="message-button">
-                x
-              </button>{" "}
+              <div className="divisor">
+                <button onClick={reinicio} className="message-button">
+                  x
+                </button>
+              </div>
               <img src={errorImg} className="message-img"></img>{" "}
               <h4 className="message-texto"> Registro no guardado </h4>{" "}
             </>
           )}
           {info === "put" && error === false && (
             <>
-              <button onClick={reinicio} className="message-button">
-                x
-              </button>{" "}
+              <div className="divisor">
+                <button onClick={reinicio} className="message-button">
+                  x
+                </button>
+              </div>
               <img src={exito} className="message-img"></img>{" "}
               <h4 className="message-texto">
                 {" "}
@@ -97,45 +107,55 @@ const Sitio = ({ info, error, id, setLoading }) => {
           )}
           {info === "put" && error === true && (
             <>
-              <button onClick={reinicio} className="message-button">
-                x
-              </button>{" "}
+              <div className="divisor">
+                <button onClick={reinicio} className="message-button">
+                  x
+                </button>
+              </div>
               <img src={errorImg} className="message-img"></img>{" "}
               <h4 className="message-texto"> Registro no actualizado </h4>{" "}
             </>
           )}
           {info === "film" && error === false && (
             <>
-              <button onClick={reinicio} className="message-button">
-                x
-              </button>{" "}
+              <div className="divisor">
+                <button onClick={reinicio} className="message-button">
+                  x
+                </button>
+              </div>
               <img src={exito} className="message-img"></img>{" "}
               <h4 className="message-texto"> Película registada con exito </h4>{" "}
             </>
           )}
           {info === "planet" && error === false && (
             <>
-              <button onClick={reinicio} className="message-button">
-                x
-              </button>{" "}
+              <div className="divisor">
+                <button onClick={reinicio} className="message-button">
+                  x
+                </button>{" "}
+              </div>
               <img src={exito} className="message-img"></img>{" "}
-              <h4 className="message-texto"> Planeta registada con exito </h4>{" "}
+              <h4 className="message-texto"> Planeta registadro con exito </h4>{" "}
             </>
           )}
           {info === "vehicle" && error === false && (
             <>
-              <button onClick={reinicio} className="message-button">
-                x
-              </button>{" "}
+              <div className="divisor">
+                <button onClick={reinicio} className="message-button">
+                  x
+                </button>
+              </div>
               <img src={exito} className="message-img"></img>{" "}
               <h4 className="message-texto"> Vehiculo registada con exito </h4>{" "}
             </>
           )}
           {info === "starship" && error === false && (
             <>
-              <button onClick={reinicio} className="message-button">
-                x
-              </button>{" "}
+              <div className="divisor">
+                <button onClick={reinicio} className="message-button">
+                  x
+                </button>
+              </div>
               <img src={exito} className="message-img"></img>{" "}
               <h4 className="message-texto">
                 {" "}
@@ -145,9 +165,11 @@ const Sitio = ({ info, error, id, setLoading }) => {
           )}
           {info === "InputError" && (
             <>
-              <button onClick={volver} className="message-button">
-                x
-              </button>{" "}
+              <div className="divisor">
+                <button onClick={reinicio} className="message-button">
+                  x
+                </button>
+              </div>
               <img src={errorImg} className="message-img"></img>{" "}
               <h4 className="message-texto">
                 {" "}

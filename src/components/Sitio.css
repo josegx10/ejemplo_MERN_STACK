@@ -17,8 +17,8 @@ justify-content: center;
   background-color: #ffffff;
 width: 20%;
 border-radius: 10px;
-height: 15vh;
-
+height: 17vh;
+text-align: center;
 margin-top: 35vh;
 
 }
@@ -26,15 +26,15 @@ margin-top: 35vh;
   border: 0;
   background-color: white;
   margin-top: 5px;
-  margin-left: 5px;
-  float: left;
-  
+  margin-right: 5px;
+  float: right;
+ 
 }
 .message-img{
   height: 50px;
   width: 50px;
   
-  margin-left: 27%;
+  
  
 }
 .message-texto{
@@ -49,6 +49,13 @@ margin-top: 35vh;
   font-size: 18px;
   border: 0;
   padding: 2px;
-  margin-left: 10px;
-  margin-right: 10px ;
+  
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.divisor {
+  width: 100%;
+  height: 30px;
+  
 }

@@ -78,7 +78,7 @@ function App() {
         <div className="cajon">
           <div className="Title">
             {" "}
-            <h1> Wiki Start Wars </h1>
+            <h1> Wiki Start Wars | {sitio === 'people' && "Personajes"} {sitio === 'films' && "Películas"} {sitio === 'planet' && "Planetas"} {sitio === 'vehicle' && "Vehículos"} {sitio === 'starship' && "Naves espaciales"} </h1>
           </div>
           <div className="button-agregar">
                 <button onClick={() => setIsOpen(true)}>
