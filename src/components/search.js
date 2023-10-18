@@ -28,7 +28,7 @@ const Search = ({ setInfo, setPeople, setLoading, setCont }) => {
 
   useEffect(() => {
     if (debouncedquery || debouncedquery === "") {
-      fetch(`http://192.168.1.162:4000/api/people/?search=${debouncedquery}`)
+      fetch(`${process.env.REACT_APP_API_URL}${process.env.REACT_APP_API_PORT}/api/people/?search=${debouncedquery}`)
         .then((response) => response.json())
         .then((people) => {
           setPeople(people?.results);

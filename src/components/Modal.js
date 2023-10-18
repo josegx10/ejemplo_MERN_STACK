@@ -34,7 +34,7 @@ const Modal = ({
   }, []);
   const addPeople = (values) => {
     if (modalFun === "add") {
-      fetch("http://192.168.1.162:4000/api/people", {
+      fetch(`${process.env.REACT_APP_API_URL}${process.env.REACT_APP_API_PORT}/api/people`, {
         method: "POST",
         body: JSON.stringify({
           name: values.name,
@@ -69,7 +69,7 @@ const Modal = ({
       setMensaje("post");
       setLoading(true);
     } else if (modalFun === "put") {
-      fetch(`http://192.168.1.162:4000/api/people/${item?._id}`, {
+      fetch(`${process.env.REACT_APP_API_URL}${process.env.REACT_APP_API_PORT}/api/people/${item?._id}`, {
         method: "PUT",
         body: JSON.stringify({
           name: values.name,
@@ -131,28 +131,28 @@ const Modal = ({
     });
   };
 
-  fetch("http://192.168.1.162:4000/api/planet")
+  fetch(`${process.env.REACT_APP_API_URL}${process.env.REACT_APP_API_PORT}/api/planet`)
     .then((response) => response.json())
     .then((people) => {
       people.forEach((element) => {
         resultsPlace.push({ value: element.name, label: element.name });
       });
     });
-  fetch("http://192.168.1.162:4000/api/starship")
+  fetch(`${process.env.REACT_APP_API_URL}${process.env.REACT_APP_API_PORT}/api/starship`)
     .then((response) => response.json())
     .then((people) => {
       people.forEach((element) => {
         resultsShips.push({ value: element.name, label: element.name });
       });
     });
-  fetch("http://192.168.1.162:4000/api/film")
+  fetch(`${process.env.REACT_APP_API_URL}${process.env.REACT_APP_API_PORT}/api/film`)
     .then((response) => response.json())
     .then((people) => {
       people.forEach((element) => {
         resultsFilms.push({ value: element.title, label: element.title });
       });
     });
-  fetch("http://192.168.1.162:4000/api/vehicle")
+  fetch(`${process.env.REACT_APP_API_URL}${process.env.REACT_APP_API_PORT}/api/vehicle`)
     .then((response) => response.json())
     .then((people) => {
       people.forEach((element) => {

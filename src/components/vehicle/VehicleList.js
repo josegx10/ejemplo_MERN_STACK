@@ -10,7 +10,7 @@ const VehicleList = ({}) => {
   const [enable, setEnable] = useState(false);
 
   useEffect(() => {
-    fetch("http://192.168.1.162:4000/api/vehicle")
+    fetch(`${process.env.REACT_APP_API_URL}${process.env.REACT_APP_API_PORT}/api/vehicle`)
       .then((response) => response.json())
       .then((vehicle) => {
         setVehicles(vehicle);

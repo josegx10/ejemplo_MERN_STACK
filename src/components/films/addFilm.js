@@ -9,7 +9,7 @@ const AddFilm = ({ item, enable, setIsOpen }) => {
   var [mensaje, setMensaje] = useState("");
 
   const postFilm = (values) => {
-    fetch("http://192.168.1.162:4000/api/film", {
+    fetch(`${process.env.REACT_APP_API_URL}${process.env.REACT_APP_API_PORT}/api/film`, {
       method: "POST",
       body: JSON.stringify({
         title: values.title,

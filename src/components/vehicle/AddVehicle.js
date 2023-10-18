@@ -9,7 +9,7 @@ const AddVehicle = ({ item, enable, setIsOpen }) => {
   var [mensaje, setMensaje] = useState("");
 
   const postVehicle = (values) => {
-    fetch("http://192.168.1.162:4000/api/vehicle", {
+    fetch(`${process.env.REACT_APP_API_URL}${process.env.REACT_APP_API_PORT}/api/vehicle`, {
       method: "POST",
       body: JSON.stringify({
         name: values.name,

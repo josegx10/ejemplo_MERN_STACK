@@ -13,7 +13,7 @@ const Sitio = ({ info, error, id, setLoading }) => {
     setLoading(false);
   };
   const eliminar = () => {
-    fetch(`http://192.168.1.162:4000/api/people/${id}`, {
+    fetch(`${process.env.REACT_APP_API_URL}${process.env.REACT_APP_API_PORT}/api/people/${id}`, {
       method: "DELETE",
       headers: {
         Accept: "application/json",

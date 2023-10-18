@@ -9,7 +9,7 @@ const AddStarship = ({ item, enable, setIsOpen }) => {
   var [mensaje, setMensaje] = useState("");
 
   const postStarship = (values) => {
-    fetch("http://192.168.1.162:4000/api/starship", {
+    fetch(`${process.env.REACT_APP_API_URL}${process.env.REACT_APP_API_PORT}/api/starship`, {
       method: "POST",
       body: JSON.stringify({
         name: values.name,

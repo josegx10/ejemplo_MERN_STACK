@@ -11,7 +11,7 @@ const StarshipList = ({}) => {
   const [enable, setEnable] = useState(false);
 
   useEffect(() => {
-    fetch("http://192.168.1.162:4000/api/starship")
+    fetch(`${process.env.REACT_APP_API_URL}${process.env.REACT_APP_API_PORT}/api/starship`)
       .then((response) => response.json())
       .then((starship) => {
         setStarships(starship);

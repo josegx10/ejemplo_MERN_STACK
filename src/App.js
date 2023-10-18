@@ -60,7 +60,7 @@ function App() {
     if (cookies.url) {
       Paginacion(cookies.url);
     } else {
-      Paginacion(`http://192.168.1.162:4000/api/people`);
+      Paginacion(`${process.env.REACT_APP_API_URL}${process.env.REACT_APP_API_PORT}/api/people`);
     }
   }, []);
 
