@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
 import Search from "./components/search";
 import PeopleList from "./components/PeopleList";
 import Modal from "./components/Modal";
-import { url } from "./components/exports";
 import { useCookies } from "react-cookie";
 import Barra from "./components/barra";
 import FilmsList from "./components/films/FilmsList";
