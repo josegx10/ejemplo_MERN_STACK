@@ -51,12 +51,14 @@ const PlanetList = ({}) => {
                 </td>
 
                 <td>
-                  {item?.rotation_period === "none" || item?.rotation_period === "unknown"
+                  {item?.rotation_period === "none" ||
+                  item?.rotation_period === "unknown"
                     ? "n/a"
                     : item?.rotation_period}
                 </td>
                 <td>
-                  {item?.orbital_period === "none" || item?.orbital_period === "unknown"
+                  {item?.orbital_period === "none" ||
+                  item?.orbital_period === "unknown"
                     ? "n/a"
                     : item?.orbital_period}
                 </td>
@@ -84,41 +86,35 @@ const PlanetList = ({}) => {
                 </td>
 
                 <td>
-                  {item?.surface_water === "none" || item?.surface_water === "unknown"
+                  {item?.surface_water === "none" ||
+                  item?.surface_water === "unknown"
                     ? "n/a"
                     : item?.surface_water}
                 </td>
 
                 <td>
-                  <img src={ver} className="button-accion" onClick={() => {
-                    setIsOpen(true);
-                    setItem(item);
-                    setEnable(true);
-                  }} />
-                  
+                  <img
+                    src={ver}
+                    className="button-accion"
+                    onClick={() => {
+                      setIsOpen(true);
+                      setItem(item);
+                      setEnable(true);
+                    }}
+                  />
                 </td>
               </tr>
             ))}
           </tbody>
-        </table>  
+        </table>
       ) : (
         <div className="spinner"> </div>
       )}
       {isOpen && (
-          <AddPlanet
-            setIsOpen={setIsOpen}
-            item={item}
-            enable={enable}
-            
-          />  
-        )}
+        <AddPlanet setIsOpen={setIsOpen} item={item} enable={enable} />
+      )}
     </>
   );
 };
 
 export default PlanetList;
-
-
-
-
-

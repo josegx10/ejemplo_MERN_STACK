@@ -41,12 +41,12 @@
   float: left;
   height: 100vh;
 }
-.cajon{
+.cajon {
   padding: 10px;
-  background: #FFFFFF 0% 0% no-repeat padding-box;
-box-shadow: inset 0px 3px 10px #0000000D, 5px 10px 6px #0000000D;
-border-radius: 30px;
-opacity: 1;
+  background: #ffffff 0% 0% no-repeat padding-box;
+  box-shadow: inset 0px 3px 10px #0000000d, 5px 10px 6px #0000000d;
+  border-radius: 30px;
+  opacity: 1;
 }
 .my-button {
   padding: 10px 20px;
@@ -103,10 +103,8 @@ h2 {
 }
 .cont {
   float: left;
-
 }
 .paginacion {
-  
   width: 248px;
   height: 43px;
   background: #d9dee2 0% 0% no-repeat padding-box;
@@ -132,22 +130,22 @@ h2 {
   font: normal normal normal 18px/24px Roboto;
   color: #ffffff;
 }
-.button-agregar{
+.button-agregar {
   text-align: right;
   margin-top: 10px;
   margin-bottom: 10px;
 }
 
-.button-agregar button{
-  background: #E5E9F9 0% 0% no-repeat padding-box;
-background: #E5E9F9 0% 0% no-repeat padding-box;
-border-radius: 35px;
-opacity: 1;
-color: #4560F1;
-border: 0;
-font-size: 18px;
-padding-top: 10px;
-padding-bottom: 10px;
-padding-left: 20px;
-padding-right: 20px;
+.button-agregar button {
+  background: #e5e9f9 0% 0% no-repeat padding-box;
+  background: #e5e9f9 0% 0% no-repeat padding-box;
+  border-radius: 35px;
+  opacity: 1;
+  color: #4560f1;
+  border: 0;
+  font-size: 18px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
 }

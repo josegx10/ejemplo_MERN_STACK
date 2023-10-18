@@ -1,11 +1,11 @@
 .barraMenu {
-    background-color: black;
-    width: 40px;
-    height: 100vh;
-    border-radius: 10px;
-    float: left;
+  background-color: black;
+  width: 40px;
+  height: 100vh;
+  border-radius: 10px;
+  float: left;
 }
-.barraMenu img{
-    height: 40px;
-    width: 40px;
+.barraMenu img {
+  height: 40px;
+  width: 40px;
 }

@@ -5,7 +5,6 @@ import * as Yup from "yup";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 
 const AddStarship = ({ item, enable, setIsOpen }) => {
-  
   var [loading, setLoading] = useState(false);
   var [mensaje, setMensaje] = useState("");
 
@@ -39,9 +38,7 @@ const AddStarship = ({ item, enable, setIsOpen }) => {
       });
   };
 
-  useEffect(() => {
-    
-  }, []);
+  useEffect(() => {}, []);
   const formSchema = Yup.object().shape({
     name: Yup.string().required("Campo Obligatorio"),
     model: Yup.string().required("Campo Obgatorio"),
@@ -54,8 +51,8 @@ const AddStarship = ({ item, enable, setIsOpen }) => {
           <div className="button-modal">
             <button onClick={() => setIsOpen(false)}>X</button>
           </div>
-          <br/>
-          <br/>
+          <br />
+          <br />
           <Formik
             initialValues={{
               name: item?.name,
@@ -92,7 +89,8 @@ const AddStarship = ({ item, enable, setIsOpen }) => {
                   />
                   <br />
                   Clase <br />
-                  <Field name="starship_class" disabled={enable} /> Tamaño <br />
+                  <Field name="starship_class" disabled={enable} /> Tamaño{" "}
+                  <br />
                   <Field name="length" disabled={enable} />
                   <br />
                   Número de pasajeros <br />
@@ -104,7 +102,7 @@ const AddStarship = ({ item, enable, setIsOpen }) => {
                   <Field name="hyperdrive_rating" disabled={enable} />
                   <br />
                   MGLT <br />
-                  <Field name="MGLT" disabled={enable}/>
+                  <Field name="MGLT" disabled={enable} />
                   Capacidad <br />
                   <Field name="cargo_capacity" disabled={enable} />
                   <br />

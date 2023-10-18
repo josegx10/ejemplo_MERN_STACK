@@ -25,7 +25,7 @@
   padding: 10px;
   margin: 0px 0px 0 0;
   font-size: 24px;
-  color: #6454C8;
+  color: #6454c8;
   font: normal normal bold 24px/32px Roboto;
 }
 .button-modal {
@@ -71,9 +71,8 @@
   padding-left: 5px;
   padding-right: 5px;
   margin-left: 15px;
-  
 }
-.modal-inputs input{
+.modal-inputs input {
   width: 97%;
   background: #f7f8f9 0% 0% no-repeat padding-box;
   box-shadow: inset 0px 2px 2px #0000000d;
@@ -82,11 +81,10 @@
   border: 0;
   padding-top: 10px;
   padding-bottom: 10px;
-  
 }
 .modal-inputs-extras {
   width: 90%;
-  
+
   padding-left: 5px;
   padding-right: 5px;
   margin-left: 15px;
@@ -100,13 +98,10 @@
   border: 0;
   padding-top: 10px;
   padding-bottom: 10px;
-
 }
 .button-guardar {
   text-align: center;
   margin-top: 10vh;
-  
-  
 }
 .button-guardar button {
   background: #4560f2 0% 0% no-repeat padding-box;
@@ -143,11 +138,10 @@
   100% {
     transform: rotate(360deg);
   }
-  
 }
 
-.DataError{
-    height: 10px;
-    color: red;
-    font-size: 10px;
+.DataError {
+  height: 10px;
+  color: red;
+  font-size: 10px;
 }

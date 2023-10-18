@@ -53,9 +53,9 @@ function App() {
     setEnable(false);
   };
   useEffect(() => {
-    if(cookies.table) {
-      setSitio(cookies.table)
-    }else {
+    if (cookies.table) {
+      setSitio(cookies.table);
+    } else {
       setSitio("people");
     }
     if (cookies.url) {
@@ -67,7 +67,7 @@ function App() {
 
   return (
     <>
-      <Barra setSitio={setSitio} setCookie={setCookie}/>
+      <Barra setSitio={setSitio} setCookie={setCookie} />
       <div className="Contenido">
         <Search
           setPeople={setPeople}
@@ -78,16 +78,20 @@ function App() {
         <div className="cajon">
           <div className="Title">
             {" "}
-            <h1> Wiki Start Wars | {sitio === 'people' && "Personajes"} {sitio === 'films' && "Películas"} {sitio === 'planet' && "Planetas"} {sitio === 'vehicle' && "Vehículos"} {sitio === 'starship' && "Naves espaciales"} </h1>
+            <h1>
+              {" "}
+              Wiki Start Wars | {sitio === "people" && "Personajes"}{" "}
+              {sitio === "films" && "Películas"}{" "}
+              {sitio === "planet" && "Planetas"}{" "}
+              {sitio === "vehicle" && "Vehículos"}{" "}
+              {sitio === "starship" && "Naves espaciales"}{" "}
+            </h1>
           </div>
           <div className="button-agregar">
-                <button onClick={() => setIsOpen(true)}>
-                  + Agregar registro
-                </button>
-              </div>
+            <button onClick={() => setIsOpen(true)}>+ Agregar registro</button>
+          </div>
           {sitio === "people" && (
             <>
-              
               <PeopleList people={people} loading={loading}>
                 {" "}
                 {setInfo?.count === 0 ? (
@@ -150,11 +154,11 @@ function App() {
                 </div>
               </div>
             </>
-            )} 
-          {sitio === 'films' && (<FilmsList></FilmsList>)}
-          {sitio === 'planet' && (<PlanetList></PlanetList>)}
-          {sitio === 'starship' && (<StarshipList></StarshipList>)}
-          {sitio === 'vehicle' && (<VehicleList></VehicleList>)}
+          )}
+          {sitio === "films" && <FilmsList></FilmsList>}
+          {sitio === "planet" && <PlanetList></PlanetList>}
+          {sitio === "starship" && <StarshipList></StarshipList>}
+          {sitio === "vehicle" && <VehicleList></VehicleList>}
         </div>
       </div>
       <div>
@@ -162,11 +166,17 @@ function App() {
           <Modal setIsOpen={setIsOpen} modalFun={modalFun} enable={false} />
         )}
         {isOpen && sitio === "films" && (
-          <AddFilm enable={false} setIsOpen={setIsOpen}/>
+          <AddFilm enable={false} setIsOpen={setIsOpen} />
         )}
-        {isOpen && sitio === "planet" && (<AddPlanet enable={false} setIsOpen={setIsOpen}/>)}
-        {isOpen && sitio === "vehicle" && (<AddVehicle enable={false} setIsOpen={setIsOpen}/>)}
-        {isOpen && sitio === "starship" && (<AddStarship enable={false} setIsOpen={setIsOpen}/>)}
+        {isOpen && sitio === "planet" && (
+          <AddPlanet enable={false} setIsOpen={setIsOpen} />
+        )}
+        {isOpen && sitio === "vehicle" && (
+          <AddVehicle enable={false} setIsOpen={setIsOpen} />
+        )}
+        {isOpen && sitio === "starship" && (
+          <AddStarship enable={false} setIsOpen={setIsOpen} />
+        )}
       </div>
     </>
   );

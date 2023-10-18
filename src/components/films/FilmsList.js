@@ -50,10 +50,15 @@ const FilmsList = ({}) => {
                 </td>
 
                 <td>
-                  <img src={ver} className="button-accion" onClick={() => {setIsOpen(true);
+                  <img
+                    src={ver}
+                    className="button-accion"
+                    onClick={() => {
+                      setIsOpen(true);
                       setItem(item);
-                      setEnable(true);}} />
-                  
+                      setEnable(true);
+                    }}
+                  />
                 </td>
               </tr>
             ))}
@@ -62,14 +67,7 @@ const FilmsList = ({}) => {
       ) : (
         <div className="spinner"> </div>
       )}
-      {isOpen && (
-          <AddFilm
-            setIsOpen={setIsOpen}
-            item={item}
-            enable={enable}
-            
-          />  
-        )}
+      {isOpen && <AddFilm setIsOpen={setIsOpen} item={item} enable={enable} />}
     </>
   );
 };

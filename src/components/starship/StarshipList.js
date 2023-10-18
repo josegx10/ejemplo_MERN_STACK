@@ -51,7 +51,8 @@ const StarshipList = ({}) => {
                 </td>
 
                 <td>
-                  {item?.starship_class === "none" || item?.starship_class === "unknown"
+                  {item?.starship_class === "none" ||
+                  item?.starship_class === "unknown"
                     ? "n/a"
                     : item?.starship_class}
                 </td>
@@ -68,28 +69,34 @@ const StarshipList = ({}) => {
                 </td>
 
                 <td>
-                  {item?.max_atmosphering_speed === "none" || item?.max_atmosphering_speed === "unknown"
+                  {item?.max_atmosphering_speed === "none" ||
+                  item?.max_atmosphering_speed === "unknown"
                     ? "n/a"
                     : item?.max_atmosphering_speed}
                 </td>
                 <td>
-                  {item?.cargo_capacity === "none" || item?.cargo_capacity === "unknown"
+                  {item?.cargo_capacity === "none" ||
+                  item?.cargo_capacity === "unknown"
                     ? "n/a"
                     : item?.cargo_capacity}
                 </td>
 
                 <td>
-                  {item?.consumables === "none" || item?.consumables === "unknown"
+                  {item?.consumables === "none" ||
+                  item?.consumables === "unknown"
                     ? "n/a"
                     : item?.consumables}
                 </td>
                 <td>
-                  <img src={ver} className="button-accion" onClick={() => {
-                    setIsOpen(true);
-                    setItem(item);
-                    setEnable(true);
-                  }} />
-                  
+                  <img
+                    src={ver}
+                    className="button-accion"
+                    onClick={() => {
+                      setIsOpen(true);
+                      setItem(item);
+                      setEnable(true);
+                    }}
+                  />
                 </td>
               </tr>
             ))}
@@ -99,16 +106,10 @@ const StarshipList = ({}) => {
         <div className="spinner"> </div>
       )}
       {isOpen && (
-          <AddStarship
-            setIsOpen={setIsOpen}
-            item={item}
-            enable={enable}
-            
-          />  
-        )}
+        <AddStarship setIsOpen={setIsOpen} item={item} enable={enable} />
+      )}
     </>
   );
 };
-
 
 export default StarshipList;

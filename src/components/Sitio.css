@@ -1,26 +1,24 @@
 .message {
   position: fixed;
-top: 0;
-left: 0;
-background-color: rgba(0, 0, 0, 0.8);
-z-index: 999;
-width: 100%;
-height: 100vh;
-display: none;
-justify-content: center;
-
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 999;
+  width: 100%;
+  height: 100vh;
+  display: none;
+  justify-content: center;
 }
-.message.is_open{
+.message.is_open {
   display: flex;
 }
 .message-panel {
   background-color: #ffffff;
-width: 20%;
-border-radius: 10px;
-height: 17vh;
-text-align: center;
-margin-top: 35vh;
-
+  width: 20%;
+  border-radius: 10px;
+  height: 17vh;
+  text-align: center;
+  margin-top: 35vh;
 }
 .message-button {
   border: 0;
@@ -28,28 +26,24 @@ margin-top: 35vh;
   margin-top: 5px;
   margin-right: 5px;
   float: right;
- 
 }
-.message-img{
+.message-img {
   height: 50px;
   width: 50px;
-  
-  
- 
 }
-.message-texto{
+.message-texto {
   font-size: 15px;
   margin: 10px;
 }
 
-.message-condicional{
-  background: #0C2EEB 0% 0% no-repeat padding-box;
+.message-condicional {
+  background: #0c2eeb 0% 0% no-repeat padding-box;
   width: 50px;
-  color: #FFFFFF;
+  color: #ffffff;
   font-size: 18px;
   border: 0;
   padding: 2px;
-  
+
   margin-left: 5px;
   margin-right: 5px;
 }
@@ -57,5 +51,4 @@ margin-top: 35vh;
 .divisor {
   width: 100%;
   height: 30px;
-  
 }

@@ -71,31 +71,31 @@ const AddPlanet = ({ item, enable, setIsOpen }) => {
                 <div className="modal-inputs-extras">
                   Nombre
                   <Field name="name" />
-                  <ErrorMessage name="name" className="DataError"
-                      component="div"/>
+                  <ErrorMessage
+                    name="name"
+                    className="DataError"
+                    component="div"
+                  />
                   Diámetro
-                  <Field name="diameter"/>
+                  <Field name="diameter" />
                   Periodo de rotación <br />
-                  <Field name="rotation_period"/>{" "}
-                  Periodo orbital <br />
-                  <Field name="orbital_period"/>
+                  <Field name="rotation_period" /> Periodo orbital <br />
+                  <Field name="orbital_period" />
                   <br />
                   Gravedad <br />
-                  <Field name="gravity"/>
+                  <Field name="gravity" />
                   <br />
                   Población <br />
-                  <Field name="population"/>{" "}
-                  Clima <br />
-                  <Field name="climate"/>
+                  <Field name="population" /> Clima <br />
+                  <Field name="climate" />
                   <br />
                   Terreno <br />
-                  <Field name="terrain"/>
+                  <Field name="terrain" />
                   <br />
                   % de superficie de agua <br />
-                  <Field name="surface_water"/>{" "}
+                  <Field name="surface_water" />{" "}
                 </div>
               </div>
-              
 
               {enable ? (
                 ""

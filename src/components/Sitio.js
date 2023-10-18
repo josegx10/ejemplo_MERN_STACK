@@ -42,7 +42,7 @@ const Sitio = ({ info, error, id, setLoading }) => {
                   x
                 </button>
               </div>
-              
+
               <div className="message-texto">
                 {" "}
                 ¿Estas seguro que deseas eliminar este registro?{" "}

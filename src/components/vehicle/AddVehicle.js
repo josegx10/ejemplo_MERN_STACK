@@ -69,39 +69,43 @@ const AddVehicle = ({ item, enable, setIsOpen }) => {
               <div className="modal-cuadro">
                 <div className="modal-inputs-extras">
                   Nombre <br />
-                  <Field name="name" disabled={enable}/>
-                  <ErrorMessage name="name" className="DataError" component="div"/>
+                  <Field name="name" disabled={enable} />
+                  <ErrorMessage
+                    name="name"
+                    className="DataError"
+                    component="div"
+                  />
                   <br />
                   Modelo <br />
-                  <Field name="model" disabled={enable}/>
-                  <ErrorMessage name="model" className="DataError" component="div"/>
+                  <Field name="model" disabled={enable} />
+                  <ErrorMessage
+                    name="model"
+                    className="DataError"
+                    component="div"
+                  />
                   <br />
                   Clase <br />
-                  <Field name="vehicle_class" disabled={enable}/>{" "}
-                  Tamaño <br />
-                  <Field name="length" disabled={enable}/>
+                  <Field name="vehicle_class" disabled={enable} /> Tamaño <br />
+                  <Field name="length" disabled={enable} />
                   <br />
                   Número de pasajeros <br />
-                  <Field name="passengers" disabled={enable}/>
+                  <Field name="passengers" disabled={enable} />
                   <br />
                   Velocidad atmosférica <br />
-                  <Field name="max_atmosphering_speed" disabled={enable}/>{" "}
+                  <Field name="max_atmosphering_speed" disabled={enable} />{" "}
                   Capacidad <br />
-                  <Field name="cargo_capacity" disabled={enable}/>
+                  <Field name="cargo_capacity" disabled={enable} />
                   <br />
                   Tiempo de combustible
                   <br />
-                  <Field name="consumables" disabled={enable}/>
+                  <Field name="consumables" disabled={enable} />
                   <br />
                 </div>
               </div>
               {enable ? (
                 ""
               ) : (
-                <div
-                  className="button-guardar"
-                  
-                >
+                <div className="button-guardar">
                   <button>Guardar</button>
                 </div>
               )}
