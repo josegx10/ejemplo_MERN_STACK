@@ -38,7 +38,7 @@ const Sitio = ({ info, error, id, setLoading }) => {
           {cargarMensaje === false && info === "delete" && (
             <>
               <div className="divisor">
-                <button onClick={reinicio} className="message-button">
+                <button onClick={volver} className="message-button">
                   x
                 </button>
               </div>
@@ -50,7 +50,7 @@ const Sitio = ({ info, error, id, setLoading }) => {
               <button onClick={eliminar} className="message-condicional">
                 Si{" "}
               </button>
-              <button onClick={reinicio} className="message-condicional">
+              <button onClick={volver} className="message-condicional">
                 No
               </button>
             </>
@@ -166,7 +166,7 @@ const Sitio = ({ info, error, id, setLoading }) => {
           {info === "InputError" && (
             <>
               <div className="divisor">
-                <button onClick={reinicio} className="message-button">
+                <button onClick={volver} className="message-button">
                   x
                 </button>
               </div>

@@ -150,7 +150,7 @@ const PeopleList = ({ people, loading }) => {
           />
         )}
       </div>
-      {loading2 && <Sitio info={"delete"} error={false} id={idPeople} />}
+      {loading2 && <Sitio info={"delete"} error={false} id={idPeople} setLoading={setLoading}/>}
     </>
   );
 };
